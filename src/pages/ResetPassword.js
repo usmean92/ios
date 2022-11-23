@@ -8,17 +8,14 @@ const ResetPassword = () => {
   let history = useHistory()
   let location = useLocation()
   const { email } = location.state
-  console.log('email: ', location.state)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const reset_password = async () => {
-    console.log(password, confirmPassword)
     if (password === confirmPassword) {
       setError('')
-      console.log('fff')
       await resetPassword({ email, password, setLoading })
         .then((res) => {
           history.push('/login')

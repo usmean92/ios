@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/Auth";
 import { register } from "../helpers/user";
+import { createquiz } from "../api";
 import { Link, useHistory } from "react-router-dom";
 import { ClipLoader } from 'react-spinners'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
+import Cookies from "js-cookie";
 
 const Register = () => {
   let { user, setUser } = useContext(AuthContext)
@@ -15,6 +17,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const quizes = [{ title: 'Math', items: 10 }, { title: 'English', items: 26 }, { title: 'Urdu', items: 38 }]
 
   const signup = async () => {
     let values = {
@@ -26,10 +29,22 @@ const Register = () => {
       if (password === confirmPassword) {
         setError('')
         await register({ setUser, values, setError, setLoading })
-          .then((res) => {
+          .then(async (res) => {
             if (!error) {
-              history.push('/urdu')
 
+              if (!Cookies.get('token')) {
+                setUser(user)
+              } else {
+                var i;
+                for (i = 0; i < 3; i++) {
+                  await createquiz({ course: quizes[i] })
+                }
+                if (i === 3) {
+                  setLoading(false)
+                  message.success('Account Created')
+                  history.push('/maths')
+                }
+              }
             }
           })
       }

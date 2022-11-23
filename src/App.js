@@ -66,7 +66,8 @@ import UrduContent from "./pages/UrduContent";
 
 import ModelA from "./pages/ModelA";
 import ModelMaths from "./pages/ModelMaths";
-import CommingSoon from "./pages/comingsoon";
+import { VideoPlayer } from "./pages/VideoPlayer";
+// import CommingSoon from "./pages/comingsoon";
 
 import Cookies from "js-cookie";
 import ResetPassword from "./pages/ResetPassword";
@@ -281,6 +282,12 @@ export default function App() {
             exact
             path={`${process.env.PUBLIC_URL}/home-2`}
             component={Hometwo}
+          />
+
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/video-player`}
+            component={VideoPlayer}
           />
 
           {!Cookies.get('token') ? (

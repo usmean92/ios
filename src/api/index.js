@@ -1,15 +1,22 @@
 import axios from 'axios';
-import { BASE_URL, REGISTERURL, LOGINURL, FORGOTPASSWORD, RESETPASSWORD } from './urls';
+import { BASE_URL, REGISTERURL, LOGINURL, FORGOTPASSWORD, RESETPASSWORD, CREATEQUIZ, UPDATEQUIZ, FETCHCOURSEQUIZ } from './urls';
+import Cookies from 'js-cookie'
 
-console.log('base: ', BASE_URL)
 const API = axios.create({ baseURL: BASE_URL });
-
+API.interceptors.request.use(req => {
+  if (Cookies.get('token')) {
+    req.headers.authorization = `Bearer ${Cookies.get('token')}`;
+  }
+  return req;
+})
 
 export const signup = userdata => API.post(REGISTERURL, userdata);
 export const signin = userdata => API.post(LOGINURL, userdata);
 export const forgotpassword = userdata => API.post(FORGOTPASSWORD, userdata);
 export const resetpassword = userdata => API.post(RESETPASSWORD, userdata);
-
+export const createquiz = userdata => API.post(CREATEQUIZ, userdata);
+export const updatequiz = userdata => API.post(UPDATEQUIZ, userdata);
+export const fetchcoursequiz = userdata => API.post(FETCHCOURSEQUIZ, userdata);
 
 
 const validateStatusCode = (response) =>

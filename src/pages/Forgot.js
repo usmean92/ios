@@ -17,9 +17,7 @@ const Forgot = () => {
   }
 
   const check_code = () => {
-    console.log('resetCode : ', resetCode, digitCode)
     if (resetCode == digitCode) {
-      console.log('matched')
       history.push('/reset-password', { email })
     } else {
       message.error('Invalid Reset Code')

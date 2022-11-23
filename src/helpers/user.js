@@ -7,27 +7,27 @@ import { message } from 'antd';
 export const register = async ({ setUser, values, setError, setLoading }) => {
   try {
     setLoading(true)
-    alert(values)
     let response = await signup({ name: values.name, email: values.email, password: values.password, profile_image: values.profile_image })
     if (response.data.message === false) {
       message.error(response.data.error)
       setError(true)
+      setLoading(false)
     } else {
       setUser(response.data.user)
       Cookies.set('token', response.data.token);
     }
   } catch (err) {
     console.log(err.message)
-  } finally {
-    setLoading(false)
   }
+  // finally {
+  //   setLoading(false)
+  // }
 }
 
 export const login = async ({ setUser, email, password, setLoading }) => {
 
   try {
     setLoading(true)
-    console.log('email: ', email)
     let response = await signin({ email, password })
     if (response.data.message === false) {
       message.error(response.data.error)

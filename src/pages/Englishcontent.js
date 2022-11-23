@@ -1,262 +1,267 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
 
-import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { getCourseQuiz } from "../helpers/quiz";
+import { ClipLoader } from "react-spinners";
 
 import Adminsidebar from "../components/Adminsidebar";
 import AdminTopnav from "../components/AdminTopnav";
 import Adminfooter from "../components/Adminfooter";
 import Pagination from "../components/Pagination";
 
+const unattempted = "alert-warning text-warning"
+const completed = "alert-success text-success"
+
+
 const productlList = [
   {
     id: "0901",
-    name: "Letter Drawing For A",
+    name: "Letter Drawing For (A)",
     imageUrl: "1.png",
 
-    status: "alert-success text-success",
-    tag: "Completed",
   },
   {
     id: "2323",
-    name: "Letter Drawing For B ",
+    name: "Letter Drawing For (B)",
     imageUrl: "2.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For C ",
+    name: "Letter Drawing For (C)",
     imageUrl: "3.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For D",
+    name: "Letter Drawing For (D)",
     imageUrl: "4.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For E ",
+    name: "Letter Drawing For (E) ",
     imageUrl: "5.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For F",
+    name: "Letter Drawing For (F)",
     imageUrl: "6.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For G",
+    name: "Letter Drawing For (G)",
     imageUrl: "7.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For H",
+    name: "Letter Drawing For (H)",
     imageUrl: "8.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For I",
+    name: "Letter Drawing For (I)",
     imageUrl: "9.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For J",
+    name: "Letter Drawing For (J)",
     imageUrl: "10.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For K",
+    name: "Letter Drawing For (K)",
     imageUrl: "11.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For L",
+    name: "Letter Drawing For (L)",
     imageUrl: "12.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For M ",
+    name: "Letter Drawing For (M)",
     imageUrl: "13.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For N ",
+    name: "Letter Drawing For (N)",
     imageUrl: "14.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For O",
+    name: "Letter Drawing For (O)",
     imageUrl: "15.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For P ",
+    name: "Letter Drawing For (P)",
     imageUrl: "16.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For Q ",
+    name: "Letter Drawing For (Q)",
     imageUrl: "17.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For R",
+    name: "Letter Drawing For (R)",
     imageUrl: "18.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For S",
+    name: "Letter Drawing For (S)",
     imageUrl: "19.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For T",
+    name: "Letter Drawing For (T)",
     imageUrl: "20.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For U",
+    name: "Letter Drawing For (U)",
     imageUrl: "21.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For V",
+    name: "Letter Drawing For (V)",
     imageUrl: "22.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For W",
+    name: "Letter Drawing For (W0",
     imageUrl: "23.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For X",
+    name: "Letter Drawing For (X)",
     imageUrl: "24.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For Y",
+    name: "Letter Drawing For (Y)",
     imageUrl: "25.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
   {
     id: "2323",
-    name: "Letter Drawing For Z",
+    name: "Letter Drawing For (Z)",
     imageUrl: "26.png",
-    status: "alert-warning text-warning",
-    tag: "Yet to start",
+
+
   },
 ];
 
-class EnglishContent extends Component {
-  constructor() {
-    super();
-    this.state = {
-      location: false,
-    };
+const EnglishContent = () => {
+  const [location, setLocation] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const [quizes, setQuizes] = useState([])
+  const handleModel = () => {
+    setLocation(!location)
   }
-  handleModel() {
-    this.setState({ location: !this.state.location });
-  }
-  render() {
-    const popularSlider = {
-      arrows: false,
-      dots: false,
-      infinite: false,
-      speed: 300,
-      centerMode: false,
-      variableWidth: true,
-    };
 
-    return (
-      <Fragment>
-        <div className='main-wrapper'>
-          <Navheader />
+  useEffect(async () => {
+    await getCourseQuiz({ setQuizes, title: 'English', setLoading })
+  }, [])
 
-          <div className='main-content'>
-            <Appheader />
+  const popularSlider = {
+    arrows: false,
+    dots: false,
+    infinite: false,
+    speed: 300,
+    centerMode: false,
+    variableWidth: true,
+  };
 
-            <div className='container px-3 py-4'>
-              <div className='row'>
-                <div className='col-lg-12 mt-4'>
-                  <div className='card border-0 mt-2 rounded-10'>
-                    <div className='card-body d-flex px-4 pb-0 pt-4'>
-                      <h4 className='font-xss text-grey-800 mt-3 fw-700'>
-                        English Lessons
-                      </h4>
-                    </div>
-                    <div className='card-body p-4'>
-                      <div className='table-responsive'>
-                        <table className='table table-admin mb-0'>
-                          <thead className='bg-greylight rounded-10 ovh'>
-                            <tr>
-                              <th className='border-0'></th>
-                              <th className='border-0'></th>
-                              <th className='border-0' scope='col'>
-                                Name
-                              </th>
-                              <th className='border-0' scope='col'></th>
-                              <th className='border-0' scope='col'>
-                                Status
-                              </th>
-                              <th className='border-0' scope='col'></th>
-                              <th scope='col' className='text-right border-0'>
-                                Action
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {productlList.map((value, index) => (
+  return (
+    <>
+      <div className='main-wrapper'>
+        <Navheader />
+
+        <div className='main-content'>
+          <Appheader />
+
+          <div className='container px-3 py-4'>
+            <div className='row'>
+              <div className='col-lg-12 mt-4'>
+                <div className='card border-0 mt-2 rounded-10'>
+                  <div className='card-body d-flex px-4 pb-0 pt-4'>
+                    <h4 className='font-xss text-grey-800 mt-3 fw-700'>
+                      English Lessons
+                    </h4>
+                  </div>
+                  <div className='card-body p-4'>
+                    <div className='table-responsive'>
+                      <table className='table table-admin mb-0'>
+                        <thead className='bg-greylight rounded-10 ovh'>
+                          <tr>
+                            <th className='border-0'></th>
+                            <th className='border-0'></th>
+                            <th className='border-0' scope='col'>
+                              Name
+                            </th>
+                            <th className='border-0' scope='col'></th>
+                            <th className='border-0' scope='col'>
+                              Status
+                            </th>
+                            <th className='border-0' scope='col'></th>
+                            <th scope='col' className='text-right border-0'>
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {!loading ? quizes.length !== 0 &&
+                            productlList.map((value, index) => (
                               <tr key={index}>
                                 <td></td>
                                 <td className='product-thumbnail text-start ps-0'>
@@ -276,16 +281,22 @@ class EnglishContent extends Component {
                                 <td></td>
                                 <td>
                                   <span
-                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${value.status}`}>
-                                    {value.tag}
+                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status !== 'unattemped' ? unattempted : completed}`}>
+                                    {quizes.status[index]}
                                   </span>
                                 </td>
                                 <td></td>
                                 <td className='product-remove text-right'>
-                                  <a href='/#'>
-                                    <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                    Start
-                                  </a>
+                                  {quizes.status[index] === 'unattemped' ?
+                                    <Link to={{ pathname: '/video-player', state: { course: 'English', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1] } }} >
+                                      <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                      Start
+                                    </Link>
+                                    :
+                                    <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1] } }} >
+                                      <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                      View
+                                    </Link>}
                                   {/* <Button
                                     className='bg-transparent border-0'
                                     onClick={() => {
@@ -328,22 +339,24 @@ class EnglishContent extends Component {
                                   </Modal> */}
                                 </td>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
+                            )) :
+                            <ClipLoader size={20} />
+                          }
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <Appfooter />
         </div>
-      </Fragment>
-    );
-  }
+
+        <Appfooter />
+      </div>
+    </>
+  );
 }
 
 export default EnglishContent;
+

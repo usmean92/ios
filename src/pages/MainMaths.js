@@ -12,7 +12,7 @@ const popularList = [
     title: "Number Sequence",
 
     tag: "Drawing Activity",
-    lesson: "20 ",
+    lesson: "10 ",
     status: "alert-warning text-warning",
     link: "mathscourse",
   },

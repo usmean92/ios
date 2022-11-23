@@ -12,7 +12,7 @@ const popularList = [
     title: "اردو حروفِ تہجی",
 
     tag: "Drawing Activity",
-    lesson: "20 ",
+    lesson: "38 ",
     status: "alert-warning text-warning",
     link: "urducourse",
   },

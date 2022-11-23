@@ -16,7 +16,6 @@ const Login = () => {
     await login({ setUser, email, password, setLoading })
       .then((res) => {
         if (Cookies.get('token')) {
-          console.log('loged in ')
           history.push('/urdu')
         }
       })
