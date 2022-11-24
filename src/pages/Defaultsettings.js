@@ -13,7 +13,6 @@ class Defaultsettings extends Component {
       <Fragment>
         <div className='main-wrapper'>
           <Navheader />
-
           <div className='main-content'>
             <Appheader />
 

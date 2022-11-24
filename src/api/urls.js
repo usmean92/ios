@@ -4,8 +4,10 @@ export const LOGINURL = 'user/login'
 export const FORGOTPASSWORD = 'user/forgot-password'
 export const RESETPASSWORD = 'user/reset-password'
 export const CREATEQUIZ = 'quiz/create'
-export const UPDATEQUIZ = 'quiz/update'
 export const FETCHCOURSEQUIZ = 'quiz/course'
+export const UPDATEQUIZ = (quizId) => `quiz/update/${quizId}`
+
+
 
 
 

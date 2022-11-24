@@ -281,22 +281,24 @@ const EnglishContent = () => {
                                 <td></td>
                                 <td>
                                   <span
-                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status !== 'unattemped' ? unattempted : completed}`}>
+                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status[index] === 'unattemped' ? "alert-warning text-warning" : "alert-success text-success"}`}>
                                     {quizes.status[index]}
                                   </span>
                                 </td>
                                 <td></td>
                                 <td className='product-remove text-right'>
                                   {quizes.status[index] === 'unattemped' ?
-                                    <Link to={{ pathname: '/video-player', state: { course: 'English', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1] } }} >
+                                    <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'English', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1], index } }} >
                                       <i className='feather-play mr-1 font-xs text-grey-500'></i>
                                       Start
                                     </Link>
                                     :
-                                    <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1] } }} >
-                                      <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                      View
-                                    </Link>}
+                                    ''
+                                    // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1], index } }} >
+                                    //   <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                    //   View
+                                    // </Link>
+                                  }
                                   {/* <Button
                                     className='bg-transparent border-0'
                                     onClick={() => {

@@ -15,22 +15,22 @@ export const signin = userdata => API.post(LOGINURL, userdata);
 export const forgotpassword = userdata => API.post(FORGOTPASSWORD, userdata);
 export const resetpassword = userdata => API.post(RESETPASSWORD, userdata);
 export const createquiz = userdata => API.post(CREATEQUIZ, userdata);
-export const updatequiz = userdata => API.post(UPDATEQUIZ, userdata);
 export const fetchcoursequiz = userdata => API.post(FETCHCOURSEQUIZ, userdata);
+export const updatequiz = (quizId, userdata) => API.post(UPDATEQUIZ(quizId), userdata);
 
-
-const validateStatusCode = (response) =>
+const validateStatusCode = response =>
   new Promise((resolve, reject) => {
     const status = response.status;
     const next = status < 400 ? resolve : reject;
     response.text().then(next);
   });
 
-export const makePrediction = (image) =>
-  fetch("/api/predict", {
+export const makePrediction = (image, port) =>
+  fetch(`http://127.0.0.1:${port}/api/predict`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ image }),
+    body: JSON.stringify({ image })
   }).then(validateStatusCode);
+

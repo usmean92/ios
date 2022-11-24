@@ -174,7 +174,7 @@ const MathsContent = () => {
     setLocation(!location)
   }
 
-useEffect(async () => {
+  useEffect(async () => {
     await getCourseQuiz({ setQuizes, title: 'Math', setLoading })
   }, [])
 
@@ -249,7 +249,7 @@ useEffect(async () => {
                                 <td></td>
                                 <td>
                                   <span
-                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${value.status}`}>
+                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status[index] === 'unattemped' ? "alert-warning text-warning" : "alert-success text-success"}`}>
                                     {quizes.status[index]}
                                   </span>
                                 </td>
@@ -261,7 +261,7 @@ useEffect(async () => {
                                       Start
                                     </Link>
                                     :
-                                    <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1] } }} >
+                                    <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1], index } }} >
                                       <i className='feather-play mr-1 font-xs text-grey-500'></i>
                                       View
                                     </Link>}

@@ -6,3 +6,8 @@
 .fs-6 {
   font-size: 12px;
 }
+
+.dark-btn {
+  background: #0979cc !important;
+  color: white !important; 
+}

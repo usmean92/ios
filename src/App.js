@@ -66,7 +66,8 @@ import UrduContent from "./pages/UrduContent";
 
 import ModelA from "./pages/ModelA";
 import ModelMaths from "./pages/ModelMaths";
-import { VideoPlayer } from "./pages/VideoPlayer";
+import VideoPlayer from "./pages/VideoPlayer";
+import SketchBoard from "./pages/SketchBoard";
 // import CommingSoon from "./pages/comingsoon";
 
 import Cookies from "js-cookie";
@@ -288,6 +289,12 @@ export default function App() {
             exact
             path={`${process.env.PUBLIC_URL}/video-player`}
             component={VideoPlayer}
+          />
+
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/sketch-board`}
+            component={SketchBoard}
           />
 
           {!Cookies.get('token') ? (

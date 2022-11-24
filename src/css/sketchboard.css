@@ -1,0 +1,88 @@
+.App {
+  text-align: center;
+}
+
+
+.header {
+  background-color: #fff;
+  height: 150px;
+  padding: 20px;
+  color: #000;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.intro {
+  font-size: large;
+}
+
+.logo {
+  height: 180px;
+}
+
+.button-container {
+  display: inline;
+  width: 130px;
+  height: 40px;
+  margin: 10px;
+  text-align: center;
+}
+
+.sketchbutton {
+  margin-top: 10px;
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #0979cc;
+  color: #0979cc;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.sketchbutton:hover {
+  color: white;
+  background: #0979cc;
+}
+
+.predict {
+  background: #0979cc;
+  color: white;
+}
+
+.predict:hover {
+  color: #0979cc;
+  background: white;
+
+}
+
+.sketchbutton:active {
+  letter-spacing: 2px;
+}
+
+.btn-success {
+  background-color: rgb(69, 194, 117) !important;
+  border: none;
+  margin-top: 12px;
+}
+
+.btn-success:hover {
+  background-color: rgb(43, 100, 65) !important;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
