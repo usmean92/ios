@@ -34,18 +34,15 @@ const SketchBoard = () => {
   const [error, setError] = useState();
   const [prediction, setPrediction] = useState();
   const { answer, course, index, qid } = location.state;
-  console.log('anser: ', answer, qid)
-  console.log('index: ', index)
+
 
 
   const handleSubmit = () => {
-    console.log('dhjh', course)
     const port = course === 'Math' ? '5000' : course == 'English' ? '5001' : '5002'
     const image = sketchRef.current.toDataURL();
 
     setPrediction(undefined);
     setError(undefined);
-    console.log('port', port)
     makePrediction(image, port).then(setPrediction).catch(setError);
   };
 
