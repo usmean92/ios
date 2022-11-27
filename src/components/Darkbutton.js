@@ -34,15 +34,15 @@ const DarkMode = () => {
 
   return (
     <li className={'nav-item dropdown '}>
-      <span
-        className={`navi-link  cursor-pointer ${
-          theme === 'dark' ? clickedClass : ''
-        }`}
-        onClick={(e) => switchTheme(e)}
-      >
-        <i className={`feather-moon`}></i>
-      </span>
-    </li>
+    <span
+      className={`navi-link  cursor-pointer ${
+        theme === 'dark' ? clickedClass : ''
+      }`}
+      onClick={(e) => switchTheme(e)}
+    >
+      <i className={`feather-moon`}></i>
+    </span>
+  </li>
   );
 };
 

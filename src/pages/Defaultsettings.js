@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import Myclass from "../components/Myclass";
 import Subscribe from "../components/Subscribe";
 import { Link } from "react-router-dom";
+import Parentheader from "../components/Parentheader";
 
 class Defaultsettings extends Component {
   render() {
@@ -14,7 +15,7 @@ class Defaultsettings extends Component {
         <div className='main-wrapper'>
           <Navheader />
           <div className='main-content'>
-            <Appheader />
+            <Parentheader />
 
             <div className='middle-sidebar-bottom bg-lightblue theme-dark-bg'>
               <div className='middle-sidebar-left'>

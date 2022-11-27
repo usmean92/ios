@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
-import Appheader from "../components/Appheader";
+import Appheader from "../components/Parentheader";
 import Profile from "../components/Profile";
 import Darkmode from "../components/Darkmode";
 import Subscribe from "../components/Subscribe";
 import { Link } from "react-router-dom";
+import Parentheader from "../components/Parentheader";
 
 class AddKid extends Component {
   render() {
@@ -15,7 +16,7 @@ class AddKid extends Component {
           <Navheader />
 
           <div className='main-content'>
-            <Appheader />
+            <Parentheader />
 
             <div className='middle-sidebar-bottom bg-lightblue theme-dark-bg'>
               <div className='middle-sidebar-left'>
@@ -68,22 +69,16 @@ class AddKid extends Component {
                               <label className='mont-font fw-600 font-xsss'>
                                 Grade
                               </label>
-                              <input type='text' className='form-control' />
+                              <select name='grade' className='form-control'>
+                                <option value='pg'>Playgroup</option>
+                                <option value='kg1'>KG 1</option>
+                                <option value='kg2'>KG 2</option>
+                              </select>
                             </div>
                           </div>
                         </div>
 
                         <div className='row'>
-                          <div className='col-lg-12 mb-3'>
-                            <label className='mont-font fw-600 font-xsss'>
-                              Description
-                            </label>
-                            <textarea
-                              className='form-control mb-0 p-3 bg-greylight lh-16'
-                              rows='5'
-                              placeholder='Write your message...'></textarea>
-                          </div>
-
                           <div className='col-lg-12'>
                             <Link
                               to='/account-information'

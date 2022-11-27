@@ -5,6 +5,7 @@ import Appheader from "../components/Appheader";
 import Profile from "../components/Profile";
 import Myclass from "../components/Myclass";
 import Subscribe from "../components/Subscribe";
+import Parentheader from "../components/Parentheader";
 
 const memberList = [
   {
@@ -65,7 +66,7 @@ class MyKids extends Component {
           <Navheader />
 
           <div className='main-content'>
-            <Appheader />
+            <Parentheader />
 
             <div className='middle-sidebar-bottom'>
               <div className='middle-sidebar-left'>

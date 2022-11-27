@@ -3,6 +3,7 @@ import Appfooter from '../components/Appfooter';
 import Navheader from '../components/Navheader';
 import Appheader from '../components/Appheader';
 import { Link } from 'react-router-dom';
+import Parentheader from "../components/Parentheader";
 
 class Popupchat extends Component {
   render() {
@@ -11,8 +12,8 @@ class Popupchat extends Component {
         <div className="main-wrapper">
           <Navheader />
 
-          <div className="main-content">
-            <Appheader />
+          <div className='main-content'>
+            <Parentheader />
           </div>
 
           <div className="modal-popup-chat">

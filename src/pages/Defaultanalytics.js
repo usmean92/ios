@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import Myclass from "../components/Myclass";
 import Subscribe from "../components/Subscribe";
 import Chart from "react-apexcharts";
+import Parentheader from "../components/Parentheader";
 
 const blueChart = {
   series: [
@@ -531,7 +532,7 @@ class Defaultanalytics extends Component {
           <Navheader />
 
           <div className='main-content'>
-            <Appheader />
+          <Parentheader />
 
             <div className='middle-sidebar-bottom theme-dark-bg'>
               <div className='middle-sidebar-left'>

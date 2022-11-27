@@ -173,7 +173,20 @@ class Contacttwo extends Component {
           </div>
         </div>
 
-      
+        <div className="map-wrapper">
+          <div style={{ height: '600px', width: '100%' }}>
+            <GoogleMapReact
+              defaultCenter={this.props.center}
+              defaultZoom={this.props.zoom}
+            >
+              <AnyReactComponent
+                lat={59.955413}
+                lng={30.337844}
+                text="My Marker"
+              />
+            </GoogleMapReact>
+          </div>
+        </div>
 
         <Footer />
       </Fragment>

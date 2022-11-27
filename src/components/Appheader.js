@@ -31,13 +31,13 @@ const Appheader = () => {
                 aria-label='search outline'></ion-icon>
             </i>
             <span className='ms-1 mt-1 d-inline-block close searchbox-close'>
-              <i className='ti-close font-xs' onClick={() => toggleActive()}></i>
+              <i className='ti-close font-xs' onClick={toggleActive}></i>
             </span>
           </div>
         </form>
       </div>
 
-      <button onClick={() => toggleOpen()} className='header-menu'></button>
+      <button onClick={toggleOpen} className='header-menu'></button>
       <form action='#' className='float-left header-search'>
         <div className='form-group mb-0 icon-input'>
           <i className='feather-search font-lg text-grey-400'></i>
@@ -139,7 +139,7 @@ const Appheader = () => {
           </Link>
         </li>
         <li>
-          <span onClick={() => toggleActive()} className='menu-search-icon'>
+          <span onClick={toggleActive} className='menu-search-icon'>
             <i className='feather-search text-grey-900 font-lg'></i>
           </span>
         </li>
@@ -156,7 +156,7 @@ const Appheader = () => {
                 </span>
               </Link>
               <span
-                onClick={() => toggleOpen()}
+                onClick={toggleOpen}
                 className='close-nav d-inline-block d-lg-none'>
                 <i className='ti-close bg-grey mb-4 btn-round-sm font-xssss fw-700 text-dark ml-auto mr-2 '></i>
               </span>
@@ -215,66 +215,6 @@ const Appheader = () => {
                   <i className='feather-volume-2 mr-3'></i>
                   <span>Poems</span>
                 </NavLink>
-              </li>
-            </ul>
-
-            <div className='nav-caption fw-600 font-xssss text-grey-500'>
-              <span></span> Parent Dashboard
-            </div>
-            <ul className='mb-3'>
-              <li className='logo d-none d-xl-block d-lg-block'></li>
-              <li>
-                <Link
-                  to='/addkid'
-                  className='nav-content-bttn open-font h-auto pt-2 pb-2'>
-                  <i className='font-sm feather-plus-circle mr-3 text-grey-500'></i>
-                  <span>Register a Kid</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/mykids'
-                  className='nav-content-bttn open-font h-auto pt-2 pb-2'>
-                  <i className='font-sm feather-user mr-3 text-grey-500'></i>
-                  <span>My Kids</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to='/default-analytics'
-                  className='nav-content-bttn open-font h-auto pt-2 pb-2'>
-                  <i className='font-sm feather-pie-chart mr-3 text-grey-500'></i>
-                  <span>Analytics</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/popup-chat'
-                  className='nav-content-bttn open-font h-auto pt-2 pb-2'>
-                  <i className='font-sm feather-message-square mr-3 text-grey-500'></i>
-                  <span>Chat</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/default-settings'
-                  className='nav-content-bttn open-font h-auto pt-2 pb-2'>
-                  <i className='font-sm feather-settings mr-3 text-grey-500'></i>
-                  <span>Settings</span>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    Cookies.remove('token')
-                    history.push('/')
-                  }}
-                  className='mt-3 btn ml-1 ls-3 w-100 rounded-xl bg-current font-xssss fw-700 ls-lg text-white'
-                >
-                  <i className='font-sm feather-log-out mr-2 pt-2 text-white-500'></i>
-                  <span>Logout</span>
-                </button>
               </li>
             </ul>
           </div>

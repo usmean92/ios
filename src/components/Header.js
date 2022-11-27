@@ -25,7 +25,7 @@ const Header = (props) => {
                 <span className='d-block font-xsssss ls-1 text-grey-500 open-font '></span>
               </h1>
             </Link>
-            <button className='navbar-toggler' onClick={() => toggleOpen()}>
+            <button className='navbar-toggler' onClick={toggleOpen}>
               <span className='navbar-toggler-icon'></span>
             </button>
             <div
@@ -36,51 +36,36 @@ const Header = (props) => {
                 className='dropdown-navbar slide-navmenu nav-menu'>
                 <Navbar id='basic-navbar-nav' className='w-100 d-block'>
                   <Nav className={`${colorClass} navbar-nav`}>
-                    <Nav.Link className='nav-link' to='/'>
+                    <Nav.Link className='nav-link' href='/'>
                       Home
                     </Nav.Link>
-                    <Nav.Link className='nav-link' to='/#about'>
+                    <Nav.Link className='nav-link' href='/'>
                       About Us
                     </Nav.Link>
-                    <Nav.Link className='nav-link' to='/#service'>
+                    <Nav.Link className='nav-link' href='/'>
                       What we do
                     </Nav.Link>
-                    <Nav.Link className='nav-link' to='/price'>
+                    <Nav.Link className='nav-link' href='/price'>
                       Pricing
                     </Nav.Link>
-                    <Nav.Link to='/contact-2'>Contact</Nav.Link>
+                    <Nav.Link href='/contact-2'>Contact</Nav.Link>
                   </Nav>
                 </Navbar>
               </Navbar>
             </div>
           </div>
-          {!Cookies.get('token') ? (
-
-            <div className='col-lg-4 text-right d-none d-lg-block'>
-              <Link
-                to='/login'
-                className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
-                Login
-              </Link>
-              <Link
-                to='/register'
-                className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
-                Start Your Free Trial
-              </Link>
-            </div>
-
-          ) : <div className='col-lg-4 text-right d-none d-lg-block'>
-            <button
-              className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'
-              onClick={() => {
-                Cookies.remove('token')
-                history.push('/')
-              }}
-            >
-              Logout
-            </button>
-          </div>}
-
+          <div className='col-lg-4 text-right d-none d-lg-block'>
+            <a
+              href='/#'
+              className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
+              Login
+            </a>
+            <a
+              href='/#'
+              className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
+              Start Your Free Trial
+            </a>
+          </div>
         </div>
       </div>
     </div>

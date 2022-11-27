@@ -70,10 +70,10 @@ class Footer extends Component {
                   <h5>Activites</h5>
                   <ul>
                     <li>
-                      <Link to='/maths'>Dashboard</Link>
+                      <Link to='/maths'>Childern Dashboard</Link>
                     </li>
                     <li>
-                      <Link to='#'>Phonetic Games</Link>
+                      <Link to='/mykids'>Parent Dashboard</Link>
                     </li>
                     <li>
                       <Link to='/modela'>Alphabet Drawing</Link>
