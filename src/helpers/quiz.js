@@ -3,10 +3,10 @@ import Cookies from 'js-cookie'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
 
-export const getCourseQuiz = async ({ title, setQuizes, setLoading }) => {
+export const getCourseQuiz = async ({ childId, title, setQuizes, setLoading }) => {
   try {
     setLoading(true)
-    let response = await fetchcoursequiz({ title })
+    let response = await fetchcoursequiz(childId, { title })
     if (response.data.message === false) {
       message.error(response.data.error)
     } else {

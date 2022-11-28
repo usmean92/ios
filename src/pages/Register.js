@@ -17,7 +17,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const quizes = [{ title: 'Math', items: 10 }, { title: 'English', items: 26 }, { title: 'Urdu', items: 38 }]
+  // const quizes = [{ title: 'Math', items: 10 }, { title: 'English', items: 26 }, { title: 'Urdu', items: 38 }]
 
   const signup = async () => {
     let values = {
@@ -35,15 +35,9 @@ const Register = () => {
               if (!Cookies.get('token')) {
                 setUser(user)
               } else {
-                var i;
-                for (i = 0; i < 3; i++) {
-                  await createquiz({ course: quizes[i] })
-                }
-                if (i === 3) {
-                  setLoading(false)
-                  message.success('Account Created')
-                  history.push('/maths')
-                }
+                setLoading(false)
+                message.success('Account Created')
+                history.push('/mykids')
               }
             }
           })

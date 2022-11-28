@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
@@ -13,6 +13,7 @@ import Adminsidebar from "../components/Adminsidebar";
 import AdminTopnav from "../components/AdminTopnav";
 import Adminfooter from "../components/Adminfooter";
 import Pagination from "../components/Pagination";
+import AuthContext from "../context/Auth";
 
 
 const productlList = [
@@ -168,6 +169,7 @@ const productlList = [
 const MathsContent = () => {
   const [location, setLocation] = useState(false)
   const [loading, setLoading] = useState(false)
+  let { currentChild } = useContext(AuthContext)
 
   const [quizes, setQuizes] = useState([])
   const handleModel = () => {
@@ -175,7 +177,7 @@ const MathsContent = () => {
   }
 
   useEffect(async () => {
-    await getCourseQuiz({ setQuizes, title: 'Math', setLoading })
+    await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Math', setLoading })
   }, [])
 
 

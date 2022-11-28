@@ -75,9 +75,12 @@ import ResetPassword from "./pages/ResetPassword";
 
 export default function App() {
   const [user, setUser] = useState({})
+  const [currentChild, setCurrentChild] = useState()
+
+  const [childCount, setChildCount] = useState()
   let history = useHistory()
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, currentChild, setCurrentChild, childCount, setChildCount }}>
       <BrowserRouter basename={"/"}>
         <Switch>
           <Route
@@ -85,8 +88,6 @@ export default function App() {
             path={`${process.env.PUBLIC_URL}/`}
             component={Hometwo}
           />
-
-
 
           <Route
             exact

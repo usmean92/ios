@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
-import Appheader from "../components/Appheader";
-import Profile from "../components/Profile";
-import Myclass from "../components/Myclass";
-import Subscribe from "../components/Subscribe";
+import AuthContext from "../context/Auth";
+import { useHistory } from "react-router-dom";
 import Parentheader from "../components/Parentheader";
+import { getChildren } from "../helpers/child";
+import '../css/parent.css'
 
 const memberList = [
   {
@@ -58,20 +58,32 @@ const memberList = [
   },
 ];
 
-class MyKids extends Component {
-  render() {
-    return (
-      <Fragment>
-        <div className='main-wrapper'>
-          <Navheader />
+const MyKids = () => {
 
-          <div className='main-content'>
-            <Parentheader />
+  let history = useHistory()
+  const [children, setChildren] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const { setChildCount, setCurrentChild } = useContext(AuthContext)
 
-            <div className='middle-sidebar-bottom'>
-              <div className='middle-sidebar-left'>
-                <div className='row'>
-                  {memberList.map((value, index) => (
+  useEffect(() => {
+    let response = getChildren({ setChildren, setLoading, setError, setChildCount })
+  }, [])
+  return (
+    <>
+      <div className='main-wrapper'>
+        <Navheader />
+
+        <div className='main-content'>
+          <Parentheader />
+
+          <div className='middle-sidebar-bottom'>
+            <div className='middle-sidebar-left'>
+              <h2 className="container text-center mb-4 fw-bolder text-uppercase">Registered Childs</h2>
+
+              <div className='row'>
+                {children.length === 0 ? <h3 className='container txt-light mt-5'>{error}</h3> :
+                  children.map((value, index) => (
                     <div
                       key={index}
                       className='col-xl-4 col-lg-6 col-md-6 col-sm-6'>
@@ -84,11 +96,15 @@ class MyKids extends Component {
                         <a
                           href='/#'
                           className='ml-auto mr-auto rounded-lg overflow-hidden d-inline-block'>
-                          <img
+                          <div className="child-image-container">
+                            <h3 className="text-uppercase">{value.firstname[0]}</h3>
+                          </div>
+                          <p className="txt-light mt-2">{value.firstname} {value.lastname}</p>
+                          {/* <img
                             src={`assets/images/${value.imageUrl}`}
                             alt='avater'
                             className='p-0 w100 shadow-xss'
-                          />
+                          /> */}
                         </a>
                         <h4 className='fw-700 font-xs mt-3 mb-1'>
                           {value.name}{" "}
@@ -108,29 +124,27 @@ class MyKids extends Component {
                         </span>
 
                         <ul className='list-inline border-0 mt-4'></ul>
-                        <a
-                          href='/mykids'
-                          className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xsssss fw-700 ls-lg text-white'>
+                        <button
+                          onClick={() => {
+                            setCurrentChild(value._id)
+                            history.push('/maths')
+                          }}
+                          className='mt-3 p-0 btn p-2 lh-24 w-100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xsssss fw-700 ls-lg text-white'>
                           Dashboard
-                        </a>
-                        <a
-                          href='/mykids'
-                          className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xsssss fw-700 ls-lg text-white'>
-                          Anayltics
-                        </a>
+                        </button>
+
                       </div>
                     </div>
                   ))}
-                </div>
               </div>
             </div>
           </div>
-
-          <Appfooter />
         </div>
-      </Fragment>
-    );
-  }
+
+        <Appfooter />
+      </div>
+    </>
+  );
 }
 
 export default MyKids;

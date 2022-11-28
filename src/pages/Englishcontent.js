@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
@@ -6,11 +6,7 @@ import Appheader from "../components/Appheader";
 import { Link } from "react-router-dom";
 import { getCourseQuiz } from "../helpers/quiz";
 import { ClipLoader } from "react-spinners";
-
-import Adminsidebar from "../components/Adminsidebar";
-import AdminTopnav from "../components/AdminTopnav";
-import Adminfooter from "../components/Adminfooter";
-import Pagination from "../components/Pagination";
+import AuthContext from "../context/Auth";
 
 const unattempted = "alert-warning text-warning"
 const completed = "alert-success text-success"
@@ -204,13 +200,15 @@ const EnglishContent = () => {
   const [location, setLocation] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  let { currentChild } = useContext(AuthContext)
+
   const [quizes, setQuizes] = useState([])
   const handleModel = () => {
     setLocation(!location)
   }
 
   useEffect(async () => {
-    await getCourseQuiz({ setQuizes, title: 'English', setLoading })
+    await getCourseQuiz({ childId: currentChild, setQuizes, title: 'English', setLoading })
   }, [])
 
   const popularSlider = {

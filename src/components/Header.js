@@ -55,16 +55,27 @@ const Header = (props) => {
             </div>
           </div>
           <div className='col-lg-4 text-right d-none d-lg-block'>
-            <a
-              href='/#'
-              className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
-              Login
-            </a>
-            <a
-              href='/#'
-              className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
-              Start Your Free Trial
-            </a>
+            {!Cookies.get('token') ? (<>
+              <a
+                href='/login'
+                className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
+                Login
+              </a>
+              <a
+                href='/#'
+                className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
+                Start Your Free Trial
+              </a></>)
+              :
+              <button
+                className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'
+                onClick={() => {
+                  Cookies.remove('token')
+                  history.push('/')
+                }}>
+                Logout
+              </button>}
+
           </div>
         </div>
       </div>

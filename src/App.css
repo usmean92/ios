@@ -9,5 +9,16 @@
 
 .dark-btn {
   background: #0979cc !important;
-  color: white !important; 
+  color: white !important;
+}
+
+.txt-light {
+  color: rgb(162, 164, 166);
+  text-align: center;
+}
+
+.txt-small {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(140, 140, 144);
 }

@@ -16,7 +16,7 @@ const Login = () => {
     await login({ setUser, email, password, setLoading })
       .then((res) => {
         if (Cookies.get('token')) {
-          history.push('/math')
+          history.push('/mykids')
         }
       })
   }
