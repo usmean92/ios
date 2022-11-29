@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, REGISTERURL, LOGINURL, FORGOTPASSWORD, RESETPASSWORD, CREATEQUIZ, UPDATEQUIZ, FETCHCOURSEQUIZ, FETCHCHILDREN, REGISTERCHILD } from './urls';
+import { BASE_URL, REGISTERURL, LOGINURL, FORGOTPASSWORD, RESETPASSWORD, CREATEQUIZ, UPDATEQUIZ, FETCHCOURSEQUIZ, FETCHCHILDREN, REGISTERCHILD, FETCHSTATS } from './urls';
 import Cookies from 'js-cookie'
 
 const API = axios.create({ baseURL: BASE_URL });
@@ -19,6 +19,8 @@ export const registerchild = userdata => API.post(REGISTERCHILD, userdata);
 export const createquiz = userdata => API.post(CREATEQUIZ, userdata);
 export const fetchcoursequiz = (childId, userdata) => API.post(FETCHCOURSEQUIZ(childId), userdata);
 export const updatequiz = (quizId, userdata) => API.post(UPDATEQUIZ(quizId), userdata);
+export const fetchstatics = () => API.get(FETCHSTATS);
+
 
 const validateStatusCode = response =>
   new Promise((resolve, reject) => {

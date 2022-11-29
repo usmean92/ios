@@ -60,6 +60,7 @@ const memberList = [
 
 const MyKids = () => {
 
+  let file = ''
   let history = useHistory()
   const [children, setChildren] = useState([])
   const [loading, setLoading] = useState(false)
