@@ -13,8 +13,6 @@ const Parentheader = () => {
   const [isActive, setActive] = useState(false)
   const { childCount } = useContext(AuthContext)
 
-  console.log('limit: ', childCount)
-
   const toggleOpen = () => setOpen(!isOpen)
   const toggleActive = () => setActive(!isActive)
 
