@@ -2,75 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import AuthContext from "../context/Auth";
+import { TbDots } from 'react-icons/tb'
+import { HiOutlineTrash } from 'react-icons/hi'
 import { useHistory } from "react-router-dom";
 import Parentheader from "../components/Parentheader";
-import { getChildren, getPoems } from "../helpers/child";
+import { getChildren, childDelete } from "../helpers/child";
 import '../css/parent.css'
 
-const memberList = [
-  {
-    imageUrl: "user.png",
-    name: "Aliqa khan",
-    email: "support@gmail.com",
-    Connections: "500+",
-    Follower: "80 M",
-    Followings: "1,334",
-  },
-  {
-    imageUrl: "user.png",
-    name: "Usman Mh",
-    email: "support@gmail.com",
-    Connections: "22 M",
-    Follower: "822 k",
-    Followings: "1,334",
-  },
-  {
-    imageUrl: "user.png",
-    name: "Mohannad Omer",
-    email: "support@gmail.com",
-    Connections: "45 k",
-    Follower: "88.7 k",
-    Followings: "4,532 ",
-  },
-  {
-    imageUrl: "user.png",
-    name: "Bilal Nasir",
-    email: "support@gmail.com",
-    Connections: "500+",
-    Follower: "88.7 k",
-    Followings: "1,334",
-  },
-  {
-    imageUrl: "user.png",
-    name: "Issa Khan",
-    email: "support@gmail.com",
-    Connections: "500+",
-    Follower: "88.7 k",
-    Followings: "1,334",
-  },
-  {
-    imageUrl: "user.png",
-    name: "Ayesha Nasir",
-    email: "support@gmail.com",
-    Connections: "500+",
-    Follower: "88.7 k",
-    Followings: "1,334",
-  },
-];
-
 const MyKids = () => {
-
-  let file = ''
   let history = useHistory()
   const [children, setChildren] = useState([])
-  const [poems, setPoems] = useState([])
   const [loading, setLoading] = useState(false)
+  const [check, setCheck] = useState(false)
   const [error, setError] = useState('')
   const { setChildCount, setCurrentChild } = useContext(AuthContext)
 
   useEffect(() => {
     let response = getChildren({ setChildren, setLoading, setError, setChildCount })
-  }, [])
+  }, [check])
   return (
     <>
       <div className='main-wrapper'>
@@ -79,10 +28,10 @@ const MyKids = () => {
         <div className='main-content'>
           <Parentheader />
 
+
           <div className='middle-sidebar-bottom'>
             <div className='middle-sidebar-left'>
               <h2 className="container text-center mb-4 fw-bolder text-uppercase">Registered Childs</h2>
-
               <div className='row'>
                 {children.length === 0 ? <h3 className='container txt-light mt-5'>{error}</h3> :
                   children.map((value, index) => (
@@ -90,22 +39,22 @@ const MyKids = () => {
                       key={index}
                       className='col-xl-4 col-lg-6 col-md-6 col-sm-6'>
                       <div className='card mb-4 d-block w-100 shadow-xss rounded-lg p-4 border-0 text-center'>
-                        {/* <a
-                          href='/#'
-                          className='position-absolute right-0 mr-4 top-0 mt-3'>
-                          <i className='ti-more text-grey-500 font-xs'></i>
-                        </a> */}
+                        <button
+                          className='btn btn-danger border-0 position-absolute right-0 mr-2 top-0 mt-2'
+                          style={{ backgroundColor: 'transparent' }}
+                          onClick={() => childDelete({ childId: value._id, setCheck, check })}
+                        >
+                          <HiOutlineTrash color='rgb(237, 76, 76)' size={20} />
+                        </button>
+
+
                         <div
                           className='ml-auto mr-auto rounded-lg overflow-hidden d-inline-block'>
                           <div className="child-image-container">
                             <h3 className="text-uppercase">{value.firstname[0]}</h3>
                           </div>
                           <p className="txt-light mt-2">{value.firstname} {value.lastname}</p>
-                          {/* <img
-                            src={`assets/images/${value.imageUrl}`}
-                            alt='avater'
-                            className='p-0 w100 shadow-xss'
-                          /> */}
+
                         </div>
                         <h4 className='fw-700 font-xs mt-3 mb-1'>
                           {value.name}{" "}

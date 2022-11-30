@@ -116,7 +116,7 @@ const Poems = () => {
 
                         <button
                           className='p-2 mt-4 d-inline-block border-0 text-white fw-700 lh-30 rounded-lg w200 text-center text-uppercase font-xsssss ls-3 bg-current'
-                          onClick={() => !decoded.subscribed ? history.push({ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }) : message.warning('You need to subscribe to get this feature')}
+                          onClick={() => decoded.subscribed ? history.push({ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }) : message.warning('You need to subscribe to use this feature')}
                         >
                           Play
                         </button>

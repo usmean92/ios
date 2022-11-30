@@ -74,6 +74,7 @@ import SketchBoard from "./pages/SketchBoard";
 import Cookies from "js-cookie";
 import ResetPassword from "./pages/ResetPassword";
 import { PlayPoems } from "./pages/PlayPoems";
+import Subscription from "./pages/Subscription";
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -243,6 +244,12 @@ export default function App() {
             exact
             path={`${process.env.PUBLIC_URL}/default-analytics`}
             component={Defaultanalytics}
+          />
+
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/subscription`}
+            component={Subscription}
           />
 
           <Route

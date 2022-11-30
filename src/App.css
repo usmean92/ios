@@ -17,6 +17,9 @@
   margin-left: -20vh;
   margin-top: -2vh;
 }
+.mt-7{
+  margin-top: 15vh !important;
+}
 
 .dark-btn {
   background: #0979cc !important;

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
-import { fetchchildrens, fetchpoems, registerchild } from '../api';
+import { fetchchildrens, fetchpoems, registerchild, deletechild } from '../api';
 
 export const register = async ({ data, setLoading, setError, setChild, child }) => {
   try {
@@ -35,6 +35,16 @@ export const getChildren = async ({ setChildren, setLoading, setError, setChildC
   }
   finally {
     setLoading(false)
+  }
+}
+
+export const childDelete = async ({ childId, check, setCheck }) => {
+  let response = await deletechild(childId)
+  if (response.data.message === false) {
+    message.error(response.data.error)
+  } else {
+    setCheck(!check)
+    message.success(response.data.success)
   }
 }
 

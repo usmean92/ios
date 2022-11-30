@@ -2,17 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
-
-import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
 import { getCourseQuiz } from "../helpers/quiz";
 import { ClipLoader } from "react-spinners";
-
-import Adminsidebar from "../components/Adminsidebar";
-import AdminTopnav from "../components/AdminTopnav";
-import Adminfooter from "../components/Adminfooter";
-import Pagination from "../components/Pagination";
 import AuthContext from "../context/Auth";
 
 
@@ -87,83 +79,6 @@ const productList = [
     status: "alert-warning text-warning",
     tag: "Yet to start",
   }
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Ten (10) ",
-  //   imageUrl: "10.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Eleven (11) ",
-  //   imageUrl: "11.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Twelve (12) ",
-  //   imageUrl: "12.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Thriteen (13) ",
-  //   imageUrl: "13.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Fourteen (14) ",
-  //   imageUrl: "14.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Fifteen (15) ",
-  //   imageUrl: "15.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Sixteen (16) ",
-  //   imageUrl: "16.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Seventeen (17) ",
-  //   imageUrl: "17.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Eighteen (18) ",
-  //   imageUrl: "18.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Nineteen (19) ",
-  //   imageUrl: "19.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
-  // {
-  //   id: "2323",
-  //   name: "Letter Drawing For Twenty (20) ",
-  //   imageUrl: "20.png",
-  //   status: "alert-warning text-warning",
-  //   tag: "Yet to start",
-  // },
 ];
 
 const MathsContent = () => {

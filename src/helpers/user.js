@@ -1,4 +1,4 @@
-import { signup, signin, forgotpassword, resetpassword } from '../api/index'
+import { signup, signin, forgotpassword, resetpassword, subscribepoems } from '../api/index'
 import Cookies from 'js-cookie'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
@@ -65,5 +65,18 @@ export const resetPassword = async ({ setLoading, email, password }) => {
   } else {
     setLoading(false)
     message.success(response.data.success)
+  }
+}
+
+
+
+export const getSubscribed = async () => {
+  let response = await subscribepoems()
+  if (response.data.message === false) {
+    message.error(response.data.error)
+  } else {
+    Cookies.remove('token')
+    Cookies.set('token', response.data.token)
+    window.location.href = response.data.url;
   }
 }

@@ -176,9 +176,9 @@ const Parentheader = () => {
               <li>
                 <button
                   className='btn nav-content-bttn open-font h-auto pt-2 pb-2'
-                  onClick={() => { childCount == 2 ? message.error('You reached the limit to register childs') : history.push('/addkid') }}
+                  onClick={() => { childCount == 5 ? message.error('You reached the limit to register childs') : history.push('/addkid') }}
                 >
-                  <i className='font-sm feather-plus-circle mr-3 text-grey-500' style={{marginLeft:5}}/>
+                  <i className='font-sm feather-plus-circle mr-3 text-grey-500' style={{ marginLeft: 5 }} />
                   <span className="txt-small">Register a Kid</span>
                 </button>
 
@@ -194,10 +194,10 @@ const Parentheader = () => {
 
               <li>
                 <Link
-                  to='/default-analytics'
+                  to='/subscription'
                   className='nav-content-bttn open-font h-auto pt-2 pb-2'>
                   <i className='font-sm feather-pie-chart mr-3 text-grey-500'></i>
-                  <span>Analytics</span>
+                  <span>Subscription</span>
                 </Link>
               </li>
               <li>
