@@ -3,7 +3,6 @@ import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import { Link, useHistory } from "react-router-dom";
 import { createquiz, registerchild } from "../api/index";
-import { register } from "../helpers/child";
 import Parentheader from "../components/Parentheader";
 import { ClipLoader } from 'react-spinners'
 import 'antd/dist/antd.css'
@@ -18,22 +17,38 @@ const AddKid = () => {
   const [error, setError] = useState()
   const [child, setChild] = useState('')
   const [loading, setLoading] = useState(false)
-  const quizes = [{ title: 'Math', items: 10 }, { title: 'English', items: 26 }, { title: 'Urdu', items: 38 }]
 
   const registerChild = async () => {
 
     if (firstname && lastname && age && grade) {
+      setLoading(true)
       let data = {}
       data.firstname = firstname
       data.lastname = lastname
       data.age = age
       data.grade = grade
       let response = await registerchild({ data })
+      console.log('jj: ', response.data)
       if (response.data.message === false) {
         message.error(response.data.error)
         setLoading(false)
       } else {
         let child = response.data.child._id
+        let grade = response.data.child.grade
+        console.log('child: ', grade)
+
+        let math, eng, urdu
+        if (grade == 'pg') {
+          math = 4; eng = 8; urdu = 10;
+        }
+        else if (grade == 'kg1') {
+          math = 6; eng = 15; urdu = 18;
+        }
+        else if (grade === 'kg2') {
+          math = 10; eng = 26; urdu = 36;
+        }
+        const quizes = [{ title: 'Math', items: math }, { title: 'English', items: eng }, { title: 'Urdu', items: urdu }]
+
         var i;
         for (i = 0; i < 3; i++) {
           await createquiz({ course: quizes[i], child })
@@ -128,7 +143,7 @@ const AddKid = () => {
                           <button
                             className='bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-lg d-inline-block border-0'
                             onClick={() => registerChild()}>
-                            {!loading ? 'Register' : <ClipLoader size={20} />}
+                            {!loading ? 'Register' : <ClipLoader size={20} color='white' />}
                           </button>
                         </div>
                       </div>

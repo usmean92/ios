@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useHistory } from "react-router-dom";
 import AuthContext from "./context/Auth";
-
+import 'antd/dist/antd.css'
+import { message } from 'antd';
 import "./main.scss";
 import "./App.css"
 
@@ -72,6 +73,7 @@ import SketchBoard from "./pages/SketchBoard";
 
 import Cookies from "js-cookie";
 import ResetPassword from "./pages/ResetPassword";
+import { PlayPoems } from "./pages/PlayPoems";
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -198,6 +200,12 @@ export default function App() {
             path={`${process.env.PUBLIC_URL}/poems`}
             component={Poems}
           />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/play-poem`}
+            component={PlayPoems}
+          />
+
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/mykids`}

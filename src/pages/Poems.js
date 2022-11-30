@@ -1,10 +1,14 @@
-import React, { Component, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
-import Profile from "../components/Profile";
-import Myclass from "../components/Myclass";
-import Subscribe from "../components/Subscribe";
+import { getPoems } from "../helpers/child";
+import { ClipLoader } from 'react-spinners'
+import { useHistory } from 'react-router-dom'
+import jwt_decode from "jwt-decode";
+import Cookies from "js-cookie";
+import { message } from "antd";
+
 const channelList = [
   {
     imageUrl: "stories.webp",
@@ -48,20 +52,30 @@ const channelList = [
   },
 ];
 
-class Poems extends Component {
-  render() {
-    return (
-      <Fragment>
-        <div className='main-wrapper'>
-          <Navheader />
+const Poems = () => {
+  const [poems, setPoems] = useState([])
+  const [loading, setLoading] = useState(false)
+  let history = useHistory()
 
-          <div className='main-content'>
-            <Appheader />
+  var decoded = jwt_decode(Cookies.get('token'));
+  console.log('decode: ', decoded)
+  useEffect(async () => {
+    let response2 = await getPoems({ setPoems, setLoading })
+  }, [])
 
-            <div className='middle-sidebar-bottom theme-dark-bg'>
-              <div className='middle-sidebar-left'>
-                <div className='row'>
-                  {channelList.map((value, index) => (
+  return (
+    <>
+      <div className='main-wrapper'>
+        <Navheader />
+
+        <div className='main-content'>
+          <Appheader />
+
+          <div className='middle-sidebar-bottom theme-dark-bg'>
+            <div className='middle-sidebar-left'>
+              <div className='row'>
+                {loading ? <ClipLoader /> :
+                  channelList.map((value, index) => (
                     <div className='col-xl-4 col-lg-6 col-md-6' key={index}>
                       <div className='card mb-4 d-block w-100 shadow-xss rounded-lg p-xxl-5 p-4 border-0 text-center'>
                         <a
@@ -97,33 +111,33 @@ class Poems extends Component {
                         ) : (
                           ""
                         )}
-                        {value.tag3 ? (
-                          <span className='font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 alert-info d-inline-block text-info mb-1'>
-                            {value.tag3}
-                          </span>
-                        ) : (
-                          ""
-                        )}
+
                         <div className='clearfix'></div>
 
-                        <a
-                          href='/default-channel'
+                        <button
+                          className='p-2 mt-4 d-inline-block border-0 text-white fw-700 lh-30 rounded-lg w200 text-center text-uppercase font-xsssss ls-3 bg-current'
+                          onClick={() => !decoded.subscribed ? history.push({ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }) : message.warning('You need to subscribe to get this feature')}
+                        >
+                          Play
+                        </button>
+                        {/* <Link
+                          to={{ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }}
                           className='p-2 mt-4 d-inline-block text-white fw-700 lh-30 rounded-lg w200 text-center font-xsssss ls-3 bg-current'>
                           PLAY
-                        </a>
+                        </Link> */}
                       </div>
                     </div>
                   ))}
-                </div>
               </div>
             </div>
           </div>
-
-          <Appfooter />
         </div>
-      </Fragment>
-    );
-  }
+
+        <Appfooter />
+      </div>
+    </>
+  );
 }
+
 
 export default Poems;

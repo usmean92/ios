@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
-import { fetchchildrens, registerchild } from '../api';
+import { fetchchildrens, fetchpoems, registerchild } from '../api';
 
 export const register = async ({ data, setLoading, setError, setChild, child }) => {
   try {
@@ -31,6 +31,25 @@ export const getChildren = async ({ setChildren, setLoading, setError, setChildC
       setChildCount(response.data.children.length)
     }
   } catch (err) {
+    console.log('err: ', err.message)
+  }
+  finally {
+    setLoading(false)
+  }
+}
+
+export const getPoems = async ({ setPoems, setLoading }) => {
+
+  setLoading(true)
+  try {
+    let response = await fetchpoems()
+    if (response.data.message === false) {
+      message.error(response.data.error)
+    } else {
+      setPoems(response.data.poems)
+    }
+  } catch (err) {
+    message.error(err.message)
     console.log('err: ', err.message)
   }
   finally {

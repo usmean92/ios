@@ -16,15 +16,15 @@ const popularList = [
     status: "alert-warning text-warning",
     link: "mathscourse",
   },
-  {
-    imageUrl: "game.svg",
-    title: "Color Games",
+  // {
+  //   imageUrl: "game.svg",
+  //   title: "Color Games",
 
-    tag: "Matching Similar",
-    lesson: "24 ",
-    status: "alert-warning text-warning",
-    link: "games",
-  },
+  //   tag: "Matching Similar",
+  //   lesson: "24 ",
+  //   status: "alert-warning text-warning",
+  //   link: "games",
+  // },
   {
     imageUrl: "poems.png",
     title: "Poems",

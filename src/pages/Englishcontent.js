@@ -12,7 +12,7 @@ const unattempted = "alert-warning text-warning"
 const completed = "alert-success text-success"
 
 
-const productlList = [
+const productList = [
   {
     id: "0901",
     name: "Letter Drawing For (A)",
@@ -243,7 +243,6 @@ const EnglishContent = () => {
                         <thead className='bg-greylight rounded-10 ovh'>
                           <tr>
                             <th className='border-0'></th>
-                            <th className='border-0'></th>
                             <th className='border-0' scope='col'>
                               Name
                             </th>
@@ -259,21 +258,21 @@ const EnglishContent = () => {
                         </thead>
                         <tbody>
                           {!loading ? quizes.length !== 0 &&
-                            productlList.map((value, index) => (
-                              <tr key={index}>
-                                <td></td>
+                            quizes.status.map((value, index) => (
+                              <tr key={productList[index].id}>
+
                                 <td className='product-thumbnail text-start ps-0'>
-                                  <a href='/#' className=' small-icon'>
+                                  <Link to='/#' className=' small-icon'>
                                     <img
-                                      src={`assets/images/eng/${value.imageUrl}`}
+                                      src={`assets/images/eng/${productList[index].imageUrl}`}
                                       alt='product'
                                       className='w125 d-inline-block p-0 bg-greylight rounded-lg overflow-hidden'
                                     />
-                                  </a>
+                                  </Link>
                                 </td>
 
                                 <td>
-                                  <b>{value.name}</b>
+                                  <b>{productList[index].name}</b>
                                 </td>
 
                                 <td></td>
@@ -285,58 +284,17 @@ const EnglishContent = () => {
                                 </td>
                                 <td></td>
                                 <td className='product-remove text-right'>
-                                  {quizes.status[index] === 'unattemped' ?
-                                    <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'English', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1], index } }} >
+                                  {quizes.status[index] === 'unattemped' &&
+                                    <Link to={{ pathname: '/video-player', state: { course: 'English', content: 'alphabet', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
                                       <i className='feather-play mr-1 font-xs text-grey-500'></i>
                                       Start
                                     </Link>
-                                    :
-                                    ''
-                                    // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'Alphabet', number: value.name[value.name.indexOf('(') + 1], index } }} >
+                                    // :
+                                    // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1], index } }} >
                                     //   <i className='feather-play mr-1 font-xs text-grey-500'></i>
                                     //   View
                                     // </Link>
                                   }
-                                  {/* <Button
-                                    className='bg-transparent border-0'
-                                    onClick={() => {
-                                      this.handleModel();
-                                    }}>
-                                    <i className='ti-trash  font-xs text-danger'></i>
-                                  </Button> */}
-                                  {/* <Modal
-                                    {...this.props}
-                                    size='sm'
-                                    aria-labelledby='contained-modal-title-vcenter'
-                                    centered
-                                    show={this.state.location}>
-                                    <Button
-                                      onClick={() => {
-                                        this.handleModel();
-                                      }}
-                                      className='btn-close z-index-5 posa right-0 top-0 mt-3 me-3 font-xss'></Button>
-                                    <Modal.Body className='text-center p-4'>
-                                      <i className='ti-info-alt text-warning display4-size'></i>
-                                      <p className='text-grey-500 font-xsss mt-3 mb-4'>
-                                        Are you sure you want to delete product?
-                                      </p>
-
-                                      <Button
-                                        onClick={() => {
-                                          this.handleModel();
-                                        }}
-                                        className='border-0 btn rounded-6 lh-2 p-3 mt-0 mb-2 text-white bg-danger font-xssss text-uppercase fw-600 ls-3'>
-                                        Yes, delete!
-                                      </Button>
-                                      <Button
-                                        onClick={() => {
-                                          this.handleModel();
-                                        }}
-                                        className='border-0 btn rounded-6 lh-2 p-3 mt-0 mb-2 text-grey-600 bg-greylight font-xssss text-uppercase fw-600 ls-3 ms-1'>
-                                        No, cancle!
-                                      </Button>
-                                    </Modal.Body>
-                                  </Modal> */}
                                 </td>
                               </tr>
                             )) :

@@ -34,6 +34,7 @@ const SketchBoard = () => {
   const [error, setError] = useState();
   const [prediction, setPrediction] = useState();
   const { answer, course, index, qid } = location.state;
+  console.log('loc: ', location.state)
 
 
 
@@ -54,12 +55,14 @@ const SketchBoard = () => {
     }
     else {
       if (answer === prediction) {
+        console.log('djhdjhj')
         let response = await updatequiz(qid, { index })
         if (response.data.message) {
           message.success('Correct Answer')
           history.goBack()
           history.goBack()
         } else {
+          console.log('error captired')
           message.error(response.data.error)
         }
 

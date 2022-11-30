@@ -16,15 +16,15 @@ const popularList = [
     status: "alert-warning text-warning",
     link: "urducourse",
   },
-  {
-    imageUrl: "urdu2.jpg",
-    title: "ہم نصابی سرگرمی",
+  // {
+  //   imageUrl: "urdu2.jpg",
+  //   title: "ہم نصابی سرگرمی",
 
-    tag: "Matching Similar",
-    lesson: "24 ",
-    status: "alert-warning text-warning",
-    link: "games",
-  },
+  //   tag: "Matching Similar",
+  //   lesson: "24 ",
+  //   status: "alert-warning text-warning",
+  //   link: "games",
+  // },
   {
     imageUrl: "urdu3.jpg",
     title: "نظم",

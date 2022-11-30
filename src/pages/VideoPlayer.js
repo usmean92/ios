@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 export const VideoPlayer = () => {
   let location = useLocation()
   let { qid, course, content, number, index } = location.state
+  console.log('ff: ', qid)
 
   const source = `/assets/videos/${course}/${course} ${number}.mp4`
   return (

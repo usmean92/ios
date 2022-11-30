@@ -4,7 +4,7 @@ import Navheader from "../components/Navheader";
 import AuthContext from "../context/Auth";
 import { useHistory } from "react-router-dom";
 import Parentheader from "../components/Parentheader";
-import { getChildren } from "../helpers/child";
+import { getChildren, getPoems } from "../helpers/child";
 import '../css/parent.css'
 
 const memberList = [
@@ -63,6 +63,7 @@ const MyKids = () => {
   let file = ''
   let history = useHistory()
   const [children, setChildren] = useState([])
+  const [poems, setPoems] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const { setChildCount, setCurrentChild } = useContext(AuthContext)
@@ -89,13 +90,12 @@ const MyKids = () => {
                       key={index}
                       className='col-xl-4 col-lg-6 col-md-6 col-sm-6'>
                       <div className='card mb-4 d-block w-100 shadow-xss rounded-lg p-4 border-0 text-center'>
-                        <a
+                        {/* <a
                           href='/#'
                           className='position-absolute right-0 mr-4 top-0 mt-3'>
                           <i className='ti-more text-grey-500 font-xs'></i>
-                        </a>
-                        <a
-                          href='/#'
+                        </a> */}
+                        <div
                           className='ml-auto mr-auto rounded-lg overflow-hidden d-inline-block'>
                           <div className="child-image-container">
                             <h3 className="text-uppercase">{value.firstname[0]}</h3>
@@ -106,7 +106,7 @@ const MyKids = () => {
                             alt='avater'
                             className='p-0 w100 shadow-xss'
                           /> */}
-                        </a>
+                        </div>
                         <h4 className='fw-700 font-xs mt-3 mb-1'>
                           {value.name}{" "}
                         </h4>
@@ -138,6 +138,13 @@ const MyKids = () => {
                     </div>
                   ))}
               </div>
+
+              {/* {poems && poems.map((poem, index) => (
+                <iframe width="560" height="315" src={poem}
+                  title="Twinkle" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+              ))} */}
+
             </div>
           </div>
         </div>

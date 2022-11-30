@@ -199,16 +199,6 @@ const Appheader = () => {
               <li>
                 <NavLink
                   activeClassName='active'
-                  to='/games'
-                  className=' nav-content-bttn open-font'
-                  data-tab='friends'>
-                  <i className='feather-play mr-3'></i>
-                  <span>Games</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  activeClassName='active'
                   to='/poems'
                   className='nav-content-bttn open-font'
                   data-tab='favorites'>

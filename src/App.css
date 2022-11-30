@@ -3,8 +3,19 @@
   font-size: 13px;
 }
 
+.bolder {
+  font-weight: bolder;
+  font-size: xx-large;
+  color: rgb(57, 57, 59)
+}
+
 .fs-6 {
   font-size: 12px;
+}
+
+.ms-n5 {
+  margin-left: -20vh;
+  margin-top: -2vh;
 }
 
 .dark-btn {

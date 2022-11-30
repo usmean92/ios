@@ -17,15 +17,6 @@ const popularList = [
     link: "engcourse",
   },
   {
-    imageUrl: "agame.svg",
-    title: "Color Games",
-
-    tag: "Matching Similar",
-    lesson: "24 ",
-    status: "alert-warning text-warning",
-    link: "games",
-  },
-  {
     imageUrl: "apoem.svg",
     title: "Poems",
 

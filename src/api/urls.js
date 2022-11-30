@@ -9,3 +9,4 @@ export const CREATEQUIZ = 'quiz/create'
 export const FETCHCOURSEQUIZ = (childId) => `quiz/course/${childId}`
 export const UPDATEQUIZ = (quizId) => `quiz/update/${quizId}`
 export const FETCHSTATS = 'admin/stats'
+export const FETCHPOEMS = 'child/poems'
