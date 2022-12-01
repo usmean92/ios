@@ -18,7 +18,7 @@ const productList = [
   },
   {
     id: "2323",
-    name: "ب ",
+    name: "ب",
     imageUrl: "2.png",
     status: "alert-warning text-warning",
     tag: "Yet to start",
@@ -277,7 +277,6 @@ const UrduContent = () => {
 
   useEffect(async () => {
     await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Urdu', setLoading })
-    console.log('ddd: ', quizes)
   }, [])
   const popularSlider = {
     arrows: false,

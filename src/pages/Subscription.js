@@ -14,7 +14,6 @@ import { getSubscribed } from "../helpers/user";
 
 const Subscription = () => {
   const decoded = jwt_decode(Cookies.get('token'));
-  console.log('decode: ', decoded)
 
   return (
     <>
@@ -38,7 +37,6 @@ const Subscription = () => {
               </div>
 
               <ul className='list-inline border-0 mt-4'></ul>
-              {console.log('ff:', decoded.subscribed)}
               <button
                 onClick={() => getSubscribed()}
                 disabled={decoded.subscribed}

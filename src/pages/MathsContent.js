@@ -93,7 +93,6 @@ const MathsContent = () => {
 
   useEffect(async () => {
     await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Math', setLoading })
-    console.log('ddd: ', quizes)
   }, [])
 
 

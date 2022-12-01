@@ -1,4 +1,4 @@
-import { signup, signin, forgotpassword, resetpassword, subscribepoems } from '../api/index'
+import { signup, signin, forgotpassword, resetpassword, subscribepoems, getparentdetails, updateprofile } from '../api/index'
 import Cookies from 'js-cookie'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
@@ -42,6 +42,25 @@ export const login = async ({ setUser, email, password, setLoading }) => {
   }
 }
 
+export const updateParentProfile = async ({ setLoading, setName, setPassword, data, setCheck }) => {
+  try {
+    setLoading(true)
+    let response = await updateprofile({ data })
+    if (response.data.message === false) {
+      message.error(response.data.error)
+    } else {
+      setName(response.data.user.name)
+      setPassword(response.data.user.password)
+      message.success('Profile Updated')
+      setCheck(true)
+    }
+  } catch (err) {
+    console.log(err.message)
+  } finally {
+    setLoading(false)
+  }
+}
+
 export const forgotPassword = async ({ setLoading, email, setResetCode }) => {
   setLoading(true)
   let response = await forgotpassword({ email })
@@ -68,7 +87,16 @@ export const resetPassword = async ({ setLoading, email, password }) => {
   }
 }
 
-
+export const getDetails = async ({ setName, setEmail, setPassword }) => {
+  let response = await getparentdetails()
+  if (response.data.message === false) {
+    message.error(response.data.error)
+  } else {
+    setName(response.data.user.name)
+    setEmail(response.data.user.email)
+    setPassword(response.data.user.password)
+  }
+}
 
 export const getSubscribed = async () => {
   let response = await subscribepoems()

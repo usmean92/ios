@@ -58,7 +58,6 @@ const Poems = () => {
   let history = useHistory()
 
   var decoded = jwt_decode(Cookies.get('token'));
-  console.log('decode: ', decoded)
   useEffect(async () => {
     let response2 = await getPoems({ setPoems, setLoading })
   }, [])

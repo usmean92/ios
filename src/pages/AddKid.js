@@ -28,15 +28,12 @@ const AddKid = () => {
       data.age = age
       data.grade = grade
       let response = await registerchild({ data })
-      console.log('jj: ', response.data)
       if (response.data.message === false) {
         message.error(response.data.error)
         setLoading(false)
       } else {
         let child = response.data.child._id
         let grade = response.data.child.grade
-        console.log('child: ', grade)
-
         let math, eng, urdu
         if (grade == 'pg') {
           math = 4; eng = 8; urdu = 10;
@@ -80,7 +77,7 @@ const AddKid = () => {
                 <div className='card w-100 border-0 bg-white shadow-xs p-0 mb-4'>
                   <div className='card-body p-4 w-100 bg-current border-0 d-flex rounded-lg'>
                     <Link
-                      to='/default-settings'
+                      to='/mykids'
                       className='d-inline-block mt-2'>
                       <i className='ti-arrow-left font-sm text-white'></i>
                     </Link>

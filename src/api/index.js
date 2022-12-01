@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, REGISTERURL, LOGINURL, FORGOTPASSWORD, RESETPASSWORD, CREATEQUIZ, UPDATEQUIZ, FETCHCOURSEQUIZ, FETCHCHILDREN, REGISTERCHILD, FETCHSTATS, FETCHPOEMS, SUBSCRIBEPOEMS, DELETECHILD } from './urls';
+import { BASE_URL, REGISTERURL, LOGINURL, FORGOTPASSWORD, RESETPASSWORD, CREATEQUIZ, UPDATEQUIZ, FETCHCOURSEQUIZ, FETCHCHILDREN, REGISTERCHILD, FETCHSTATS, FETCHPOEMS, SUBSCRIBEPOEMS, DELETECHILD, UPDATEPARENT, GETDETAIL } from './urls';
 import Cookies from 'js-cookie'
 
 const API = axios.create({ baseURL: BASE_URL });
@@ -12,6 +12,8 @@ API.interceptors.request.use(req => {
 
 export const signup = userdata => API.post(REGISTERURL, userdata);
 export const signin = userdata => API.post(LOGINURL, userdata);
+export const getparentdetails = () => API.get(GETDETAIL);
+export const updateprofile = userdata => API.post(UPDATEPARENT, userdata);
 export const forgotpassword = userdata => API.post(FORGOTPASSWORD, userdata);
 export const resetpassword = userdata => API.post(RESETPASSWORD, userdata);
 export const subscribepoems = () => API.get(SUBSCRIBEPOEMS);
