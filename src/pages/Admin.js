@@ -21,13 +21,13 @@ const iconlList = [
     des: "20% Incrase from Last Week",
   },
   {
-    name: "Paid users",
+    name: "Subscribed users",
     status: "info",
     icon: "./assets/images/save-money.png",
     des: "20% Incrase from Last Week",
   },
   {
-    name: "Unpaid users",
+    name: "Unsubscribed users",
     status: "secondary",
     icon: "./assets/images/bill.png",
     des: "20% Incrase from Last Week",
@@ -171,7 +171,7 @@ const Admin = () => {
                       <img src={value.icon}
                         className={`psor text-white btn-round-md font-xs p-1 bg-${value.status}`} />
                       <h3 className='fw-700 font-xl text-grey-900 mt-2 ls-3 mb-0'>
-                        {stats[index] !== undefined ? stats[index] : 0}
+                        {stats[index]}
                       </h3>
                       <span className='font-xssss ls-0 text-grey-900 fw-700 mt-0'>
                         {value.name}

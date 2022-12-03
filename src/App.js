@@ -75,6 +75,7 @@ import Cookies from "js-cookie";
 import ResetPassword from "./pages/ResetPassword";
 import { PlayPoems } from "./pages/PlayPoems";
 import Subscription from "./pages/Subscription";
+import AdminChild from "./pages/Adminchilds";
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -129,6 +130,12 @@ export default function App() {
             exact
             path={`${process.env.PUBLIC_URL}/admin-customer`}
             component={Admincustomer}
+          />
+
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admin-child`}
+            component={AdminChild}
           />
           <Route
             exact
