@@ -42,12 +42,12 @@ class Adminsidebar extends Component {
             <span>Users</span>
           </NavLink>
         </li>
-        <li className='nav-item'>
+        {/* <li className='nav-item'>
           <NavLink className='navi-link' to='/admin-customerview'>
             <i className='feather-user mr-2'></i>
             <span>Users Details</span>
           </NavLink>
-        </li>
+        </li> */}
 
         <li className='nav-item'>
           <NavLink className='navi-link' to='/admin-chat'>

@@ -76,6 +76,7 @@ import ResetPassword from "./pages/ResetPassword";
 import { PlayPoems } from "./pages/PlayPoems";
 import Subscription from "./pages/Subscription";
 import AdminChild from "./pages/Adminchilds";
+import ChildReport from "./pages/Childreport";
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -218,6 +219,12 @@ export default function App() {
             exact
             path={`${process.env.PUBLIC_URL}/mykids`}
             component={MyKids}
+          />
+
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/child-report`}
+            component={ChildReport}
           />
 
           <Route

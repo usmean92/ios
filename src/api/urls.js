@@ -17,6 +17,7 @@ export const FETCHCOURSEQUIZ = (childId) => `quiz/course/${childId}`
 export const UPDATEQUIZ = (quizId) => `quiz/update/${quizId}`
 export const CREATEQUIZ = 'quiz/create'
 export const FETCHSTATS = 'admin/stats'
+export const FETCHREPORTS = (childId) => `child/report/${childId}`
 export const DELETEPARENT = (parentId) => `admin/delete-parent/${parentId}`
 
 

@@ -6,7 +6,7 @@ import Adminfooter from '../components/Adminfooter';
 import Pagination from '../components/Pagination';
 import { ClipLoader } from 'react-spinners';
 import Time from 'react-time-format'
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import useFormInstance from 'antd/lib/form/hooks/useFormInstance';
 import { getParents } from '../helpers/admin';
 import { deleteparent } from '../api';
@@ -184,6 +184,9 @@ const Adminproductadd = (props) => {
                               <th scope="col" className="text-end border-0">
                                 Action
                               </th>
+                              <th className="border-0" scope="col">
+                              </th>
+
                             </tr>
                           </thead>
                           <tbody>
@@ -265,6 +268,12 @@ const Adminproductadd = (props) => {
                                         </Button>
                                       </Modal.Body>
                                     </Modal>
+                                  </td>
+
+                                  <td className="link-text">
+                                    <NavLink to={{ pathname: '/admin-child', state: { pid: value._id } }}>
+                                      View Children
+                                    </NavLink>
                                   </td>
                                 </tr>
                               ))}

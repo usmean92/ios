@@ -147,46 +147,77 @@ const MathsContent = () => {
                         </thead>
                         <tbody>
                           {!loading ? quizes.length !== 0 &&
-                            quizes.status.map((value, index) => (
-                              <tr key={productList[index].id}>
+                            quizes.status.map((value, index) =>
+                              index !== 0 ?
+                                quizes.status[index - 1] != 'unattemped' &&
+                                (
 
-                                <td className='product-thumbnail text-start ps-0'>
-                                  <Link to='/#' className=' small-icon'>
-                                    <img
-                                      src={`assets/images/${productList[index].imageUrl}`}
-                                      alt='product'
-                                      className='w125 d-inline-block p-0 bg-greylight rounded-lg overflow-hidden'
-                                    />
-                                  </Link>
-                                </td>
+                                  <tr key={productList[index].id}>
+                                    <td className='product-thumbnail text-start ps-0'>
+                                      <Link to='/#' className=' small-icon'>
+                                        <img
+                                          src={`assets/images/${productList[index].imageUrl}`}
+                                          alt='product'
+                                          className='w125 d-inline-block p-0 bg-greylight rounded-lg overflow-hidden'
+                                        />
+                                      </Link>
+                                    </td>
 
-                                <td>
-                                  <b>{productList[index].name}</b>
-                                </td>
+                                    <td>
+                                      <b>{productList[index].name}</b>
+                                    </td>
 
-                                <td></td>
-                                <td>
-                                  <span
-                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status[index] === 'unattemped' ? "alert-warning text-warning" : "alert-success text-success"}`}>
-                                    {quizes.status[index]}
-                                  </span>
-                                </td>
-                                <td></td>
-                                <td className='product-remove text-right'>
-                                  {quizes.status[index] === 'unattemped' &&
-                                    <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
-                                      <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                      Start
+                                    <td></td>
+                                    <td>
+                                      <span
+                                        className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status[index] === 'unattemped' ? "alert-warning text-warning" : "alert-success text-success"}`}>
+                                        {quizes.status[index]}
+                                      </span>
+                                    </td>
+                                    <td></td>
+                                    <td className='product-remove text-right'>
+                                      {quizes.status[index] === 'unattemped' &&
+                                        <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                          <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                          Start
+                                        </Link>
+                                      }
+                                    </td>
+                                  </tr>
+                                ) :
+                                <tr key={productList[index].id}>
+                                  <td className='product-thumbnail text-start ps-0'>
+                                    <Link to='/#' className=' small-icon'>
+                                      <img
+                                        src={`assets/images/${productList[index].imageUrl}`}
+                                        alt='product'
+                                        className='w125 d-inline-block p-0 bg-greylight rounded-lg overflow-hidden'
+                                      />
                                     </Link>
-                                    // :
-                                    // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1], index } }} >
-                                    //   <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                    //   View
-                                    // </Link>
-                                  }
-                                </td>
-                              </tr>
-                            )) :
+                                  </td>
+
+                                  <td>
+                                    <b>{productList[index].name}</b>
+                                  </td>
+
+                                  <td></td>
+                                  <td>
+                                    <span
+                                      className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status[index] === 'unattemped' ? "alert-warning text-warning" : "alert-success text-success"}`}>
+                                      {quizes.status[index]}
+                                    </span>
+                                  </td>
+                                  <td></td>
+                                  <td className='product-remove text-right'>
+                                    {quizes.status[index] === 'unattemped' &&
+                                      <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                        <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                        Start
+                                      </Link>
+                                    }
+                                  </td>
+                                </tr>
+                            ) :
                             <ClipLoader size={20} />
                           }
                         </tbody>

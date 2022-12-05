@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import 'antd/dist/antd.css'
 import { message } from 'antd';
-import { fetchchildrens, fetchpoems, registerchild, deletechild } from '../api';
+import { fetchchildrens, fetchpoems, registerchild, deletechild, fetchreport } from '../api';
 
 export const register = async ({ data, setLoading, setError, setChild, child }) => {
   try {
@@ -39,12 +39,16 @@ export const getChildren = async ({ setChildren, setLoading, setError, setChildC
 }
 
 export const childDelete = async ({ childId, check, setCheck }) => {
-  let response = await deletechild(childId)
-  if (response.data.message === false) {
-    message.error(response.data.error)
+  if (!childId) {
+    message.warning('Return back to parent dashboard')
   } else {
-    setCheck(!check)
-    message.success(response.data.success)
+    let response = await deletechild(childId)
+    if (response.data.message === false) {
+      message.error(response.data.error)
+    } else {
+      setCheck(!check)
+      message.success(response.data.success)
+    }
   }
 }
 
@@ -65,4 +69,31 @@ export const getPoems = async ({ setPoems, setLoading }) => {
   finally {
     setLoading(false)
   }
+}
+
+export const getReport = async ({ childId, setReport, setChild, setLoading }) => {
+  if (!childId) {
+    message.warning('Return Back to Parent Dashboard')
+  } else {
+    setLoading(true)
+    try {
+
+      console.log('current: ', childId)
+      let response = await fetchreport(childId, { childId })
+      if (response.data.message === false) {
+        message.error(response.data.error)
+      } else {
+        console.log('res: ', response.data)
+        setChild(response.data.child)
+        setReport(response.data.report)
+      }
+    } catch (err) {
+      message.error(err.message)
+      console.log('err: ', err.message)
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
 }
