@@ -127,7 +127,6 @@ const Adminproductadd = (props) => {
 
   useEffect(async () => {
     await getParents({ setParents, setLoading })
-    console.log('pp;', parents)
   }, [check])
   return (
     <>

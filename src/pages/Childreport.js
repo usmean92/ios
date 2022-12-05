@@ -52,8 +52,6 @@ const ChildReport = (props) => {
   const [child, setChild] = useState([])
 
   let { currentChild } = useContext(AuthContext)
-  console.log('current: ', currentChild)
-
 
   let locationState = useLocation()
 
@@ -76,7 +74,6 @@ const ChildReport = (props) => {
                 (
                   <>
                     <div className='row'>
-                      {console.log('ff: ', child)}
                       <div className='col-xl-4 col-xxl-3 col-lg-4 pe-0'>
                         <div className='card w-100 shadow-xss rounded-lg overflow-hidden border-0 mb-3 mt-0 pb-3'>
                           <div className='card-body d-block pt-4 text-center'>

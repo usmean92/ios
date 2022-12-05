@@ -39,7 +39,6 @@ export const getChildren = async ({ pid, setChildren, setLoading }) => {
     if (response.data.message === false) {
       // message.error(response.data.error)
     } else {
-      console.log('ff: ', response.data.children)
       setChildren(response.data.children)
     }
   } catch (err) {

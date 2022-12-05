@@ -19,7 +19,6 @@ const AdminChild = (props) => {
   const [check, setCheck] = useState(false)
   const [children, setChildren] = useState([])
   const { pid } = locationState.state
-  console.log('pp: ', locationState.state)
 
   const handleModel = () => {
     setLocation(!location)
@@ -27,7 +26,6 @@ const AdminChild = (props) => {
 
   useEffect(async () => {
     await getChildren({ pid, setChildren, setLoading })
-    console.log('pp;', children)
   }, [check])
   return (
     <>
