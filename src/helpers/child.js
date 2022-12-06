@@ -64,7 +64,6 @@ export const getPoems = async ({ setPoems, setLoading }) => {
     }
   } catch (err) {
     message.error(err.message)
-    console.log('err: ', err.message)
   }
   finally {
     setLoading(false)
@@ -79,7 +78,6 @@ export const getReport = async ({ childId, setReport, setChild, setLoading }) =>
     try {
 
       let response = await fetchreport(childId, { childId })
-      console.log('res: ', response)
       if (response.data.message === false) {
         message.error(response.data.error)
       } else {
@@ -88,7 +86,6 @@ export const getReport = async ({ childId, setReport, setChild, setLoading }) =>
       }
     } catch (err) {
       message.error(err.message)
-      console.log('err: ', err.message)
     }
     finally {
       setLoading(false)

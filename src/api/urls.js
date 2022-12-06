@@ -22,5 +22,6 @@ export const DELETEPARENT = (parentId) => `admin/delete-parent/${parentId}`
 export const POSTCONVERSATION = '/chat/post-conversation'
 export const FETCHCONVERSATION = '/chat/conversation'
 export const ADMINLOGIN = '/admin/login'
-export const ADMINID = '638ed7a79436e2dde7be1146'
+export const PARENTINFO = '/admin/get-parent'
+export const ADMINID = '638f56476fba742808a471ef'
 

@@ -4,14 +4,14 @@ import { message } from 'antd';
 import { fetchconversation, postconversation } from '../api';
 import { ADMINID } from '../api/urls';
 
-export const createConversation = async ({ senderId, setConversation, setCheck, check, chat, setLoading }) => {
+export const createConversation = async ({ senderId, setConversation, setCheck, check, chat, setLoading, role }) => {
   setLoading(true)
   try {
-    let response = await postconversation({ senderId, recieverId: ADMINID, chat })
+    let response = await postconversation({ senderId, recieverId: ADMINID, chat, role })
     if (response.data.message === false) {
       message.error(response.data.error)
     } else {
-      setConversation(response.data.conversation)
+      // setConversation(response.data.conversation)
       setCheck(!check)
     }
   } catch (err) {
@@ -21,15 +21,13 @@ export const createConversation = async ({ senderId, setConversation, setCheck, 
   }
 }
 
-export const fetchConversation = async ({ senderId, setConversation, setLoading }) => {
+export const fetchConversation = async ({ senderId, recieverId, setConversation, setLoading }) => {
   setLoading(true)
   try {
-    console.log('sender: ', senderId)
-    let response = await fetchconversation({ senderId })
+    let response = await fetchconversation({ senderId, recieverId })
     if (response.data.message === false) {
       message.error(response.data.error)
     } else {
-      console.log('dd: ', response.data.conversation)
       setConversation(response.data.conversation[0])
     }
   } catch (err) {

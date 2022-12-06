@@ -100,7 +100,6 @@ class AdminTopnav extends Component {
                 Douglas McGee
                 <i className='font-xsssss d-block text-grey-500 fw-500'></i>
               </span>
-              <i className='ms-3 feather-log-out d-none d-lg-block'></i>
             </a>
 
             <div

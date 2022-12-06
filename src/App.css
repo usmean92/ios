@@ -63,3 +63,12 @@
 .send-button:hover {
   color: rgb(49, 140, 220) !important
 }
+
+.chat-wrapper {
+  overflow-y: scroll;
+}
+
+.messages-content {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}

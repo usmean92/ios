@@ -11,12 +11,14 @@ import jwt_decode from "jwt-decode";
 
 
 const Popupchat = () => {
-  const [conversation, setConversation] = useState([])
+  const [conversation, setConversation] = useState()
   const [chat, setChat] = useState('')
   const [check, setCheck] = useState(false)
   const [loading, setLoading] = useState(false)
   const { user, setUser } = useContext(AuthContext)
   let currentUser = user
+
+
 
   if (currentUser.length === undefined) {
     var decoded = jwt_decode(Cookies.get('token'));
@@ -26,10 +28,11 @@ const Popupchat = () => {
     setUser(currentUser)
   }
 
-
   useEffect(async () => {
     await fetchConversation({ senderId: currentUser._id, setConversation, setLoading })
   }, [check])
+
+
 
   const sendMessage = () => {
     createConversation({ senderId: currentUser._id, chat, setLoading, setConversation, check, setCheck })
@@ -69,11 +72,14 @@ const Popupchat = () => {
                 </Link>
               </div>
             </div>
+
             <div className="modal-popup-body w-100 p-4 h-auto">
-              {loading ? <ClipLoader size={30} /> : conversation.length !== undefined &&
+              {loading ? <ClipLoader size={30} /> : conversation !== undefined &&
                 conversation.messages.map((message, index) => (
                   <>
-                    <div className={`message ${conversation.sender == currentUser._id && 'self text-right'}`}>
+                    <div
+                      key={message.key}
+                      className={`message ${message.user == currentUser._id && 'self text-right'}`}>
                       <div className="message-content font-xssss lh-24 fw-500">
                         {message.text}
                       </div>
@@ -83,16 +89,6 @@ const Popupchat = () => {
                     </div>
                   </>
                 ))}
-
-
-              {/* <div
-                className="snippet pt-3 pl-4 pb-2 pr-3 mt-3 bg-grey rounded-xl float-right"
-                data-title=".dot-typing"
-              >
-                <div className="stage">
-                  <div className="dot-typing"></div>
-                </div>
-              </div> */}
               <div className="clearfix"></div>
             </div>
             <div className="modal-popup-footer w-100 border-top">
