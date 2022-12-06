@@ -79,6 +79,7 @@ export const getReport = async ({ childId, setReport, setChild, setLoading }) =>
     try {
 
       let response = await fetchreport(childId, { childId })
+      console.log('res: ', response)
       if (response.data.message === false) {
         message.error(response.data.error)
       } else {

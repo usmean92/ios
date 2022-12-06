@@ -77,15 +77,19 @@ import { PlayPoems } from "./pages/PlayPoems";
 import Subscription from "./pages/Subscription";
 import AdminChild from "./pages/Adminchilds";
 import ChildReport from "./pages/Childreport";
+import AdminLogin from "./pages/Adminlogin";
 
 export default function App() {
   const [user, setUser] = useState({})
+  const [admin, setAdmin] = useState({})
+
   const [currentChild, setCurrentChild] = useState()
 
   const [childCount, setChildCount] = useState()
   let history = useHistory()
   return (
-    <AuthContext.Provider value={{ user, setUser, currentChild, setCurrentChild, childCount, setChildCount }}>
+    <AuthContext.Provider
+      value={{ user, setUser, currentChild, setCurrentChild, childCount, setChildCount, admin, setAdmin }}>
       <BrowserRouter basename={"/"}>
         <Switch>
           <Route
@@ -110,17 +114,12 @@ export default function App() {
             component={ModelA}
           />
 
+
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/admin`}
             component={Admin}
           />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/gradeselect`}
-            component={GradeSelection}
-          />
-
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/admin-chat`}
@@ -143,217 +142,234 @@ export default function App() {
             path={`${process.env.PUBLIC_URL}/admin-customerview`}
             component={Admincustomerview}
           />
-
-
-
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/blog`}
-            component={Blog}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/blog-sidebar`}
-            component={BlogSidebar}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/blog-single`}
-            component={BlogSingle}
+            path={`${process.env.PUBLIC_URL}/admin-login`}
+            component={AdminLogin}
           />
 
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/contact-2`}
-            component={Contacttwo}
+            path={`${process.env.PUBLIC_URL}/login`}
+            component={!user._id ? Login : Hometwo}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/register`}
+            component={!user._id ? Register : Hometwo}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/forgot`}
+            component={Forgot}
           />
 
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/price`}
-            component={Price}
+            path={`${process.env.PUBLIC_URL}/reset-password`}
+            component={ResetPassword}
           />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/checkout`}
-            component={Checkout}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/addkid`}
-            component={AddKid}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/maths`}
-            component={MainMaths}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/english`}
-            component={MainEnglish}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/urdu`}
-            component={MainUrdu}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/games`}
-            component={Games}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/poems`}
-            component={Poems}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/play-poem`}
-            component={PlayPoems}
-          />
+          {user._id !== undefined || Cookies.get('token') !== undefined ?
+            (
+              <>
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/gradeselect`}
+                  component={GradeSelection}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/mykids`}
-            component={MyKids}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/blog`}
+                  component={Blog}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/blog-sidebar`}
+                  component={BlogSidebar}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/blog-single`}
+                  component={BlogSingle}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/child-report`}
-            component={ChildReport}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/contact-2`}
+                  component={Contacttwo}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/mathscourse`}
-            component={MathsContent}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/engcourse`}
-            component={EnglishContent}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/urducourse`}
-            component={UrduContent}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/price`}
+                  component={Price}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/default-settings`}
-            component={Defaultsettings}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/default-search`}
-            component={Defaultsearch}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/checkout`}
+                  component={Checkout}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/addkid`}
+                  component={AddKid}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/maths`}
+                  component={MainMaths}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/english`}
+                  component={MainEnglish}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/urdu`}
+                  component={MainUrdu}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/games`}
+                  component={Games}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/poems`}
+                  component={Poems}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/play-poem`}
+                  component={PlayPoems}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/default-analytics`}
-            component={Defaultanalytics}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/mykids`}
+                  component={MyKids}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/subscription`}
-            component={Subscription}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/child-report`}
+                  component={ChildReport}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/popup-chat`}
-            component={Popupchat}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/account-information`}
-            component={Accountinfo}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/contact-information`}
-            component={Contactinfo}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/social`}
-            component={Social}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/payment`}
-            component={Payment}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/password`}
-            component={Password}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/mathscourse`}
+                  component={MathsContent}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/engcourse`}
+                  component={EnglishContent}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/urducourse`}
+                  component={UrduContent}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/message`}
-            component={Chat}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/default-settings`}
+                  component={Defaultsettings}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/default-search`}
+                  component={Defaultsearch}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/user-profile`}
-            component={Userprofile}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/default-analytics`}
+                  component={Defaultanalytics}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/home-2`}
-            component={Hometwo}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/subscription`}
+                  component={Subscription}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/video-player`}
-            component={VideoPlayer}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/popup-chat`}
+                  component={Popupchat}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/account-information`}
+                  component={Accountinfo}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/contact-information`}
+                  component={Contactinfo}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/social`}
+                  component={Social}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/payment`}
+                  component={Payment}
+                />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/password`}
+                  component={Password}
+                />
 
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/sketch-board`}
-            component={SketchBoard}
-          />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/message`}
+                  component={Chat}
+                />
 
-          {!Cookies.get('token') ? (
-            <>
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/login`}
-                component={Login}
-              />
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/register`}
-                component={Register}
-              />
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/forgot`}
-                component={Forgot}
-              />
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/user-profile`}
+                  component={Userprofile}
+                />
 
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/reset-password`}
-                component={ResetPassword}
-              /></>
-          ) : <Hometwo />}
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/home-2`}
+                  component={Hometwo}
+                />
+
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/video-player`}
+                  component={VideoPlayer}
+                />
+
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/sketch-board`}
+                  component={SketchBoard}
+                />
+              </>)
+            : (
+              <>
+                <Login />
+              </>
+            )}
+
+
 
         </Switch>
       </BrowserRouter>
-    </AuthContext.Provider>
+    </AuthContext.Provider >
   );
 }

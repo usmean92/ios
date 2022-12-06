@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { getCourseQuiz } from "../helpers/quiz";
 import { ClipLoader } from "react-spinners";
@@ -268,16 +269,18 @@ const productList = [
 const UrduContent = () => {
   const [location, setLocation] = useState(false)
   const [loading, setLoading] = useState(false)
-  let { currentChild } = useContext(AuthContext)
-
+  const [check, setCheck] = useState(false)
   const [quizes, setQuizes] = useState([])
-  const handleModel = () => {
-    setLocation(!location)
-  }
+  let { currentChild, user, setCurrentChild } = useContext(AuthContext)
 
   useEffect(async () => {
+    if (currentChild === undefined) {
+      setCurrentChild(Cookies.get('currentChild'))
+      setCheck(!check)
+    }
     await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Urdu', setLoading })
-  }, [])
+  }, [check])
+
   const popularSlider = {
     arrows: false,
     dots: false,
@@ -323,51 +326,7 @@ const UrduContent = () => {
                             </th>
                           </tr>
                         </thead>
-                        {/* <tbody>
-                          {!loading ? quizes.length !== 0 &&
-                            quizes.status.map((value, index) => (
-                              <tr key={productList[index].id}>
 
-                                <td className='product-thumbnail text-start ps-0'>
-                                  <Link to='/#' className=' small-icon'>
-                                    <img
-                                      src={`assets/images/urdu/${productList[index].imageUrl}`}
-                                      alt='product'
-                                      className='w125 d-inline-block p-0 bg-greylight rounded-lg overflow-hidden'
-                                    />
-                                  </Link>
-                                </td>
-
-                                <td>
-                                  <b>{productList[index].name}</b>
-                                </td>
-
-                                <td></td>
-                                <td>
-                                  <span
-                                    className={`font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-lg ls-2 d-inline-block mr-1 ${quizes.status[index] === 'unattemped' ? "alert-warning text-warning" : "alert-success text-success"}`}>
-                                    {quizes.status[index]}
-                                  </span>
-                                </td>
-                                <td></td>
-                                <td className='product-remove text-right'>
-                                  {quizes.status[index] === 'unattemped' &&
-                                    <Link to={{ pathname: '/video-player', state: { course: 'Urdu', content: 'لفظ', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
-                                      <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                      Start
-                                    </Link>
-                                    // :
-                                    // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1], index } }} >
-                                    //   <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                    //   View
-                                    // </Link>
-                                  }
-                                </td>
-                              </tr>
-                            )) :
-                            <ClipLoader size={20} />
-                          }
-                        </tbody> */}
                         <tbody>
                           {!loading ? quizes.length !== 0 &&
                             quizes.status.map((value, index) =>
@@ -400,17 +359,10 @@ const UrduContent = () => {
                                     </td>
                                     <td></td>
                                     <td className='product-remove text-right'>
-                                      {quizes.status[index] === 'unattemped' &&
-                                        <Link to={{ pathname: '/video-player', state: { course: 'Urdu', content: 'لفظ', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
-                                          <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                          Start
-                                        </Link>
-                                        // :
-                                        // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1], index } }} >
-                                        //   <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                        //   View
-                                        // </Link>
-                                      }
+                                      <Link to={{ pathname: '/video-player', state: { course: 'Urdu', content: 'لفظ', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                        <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                        Start
+                                      </Link>
                                     </td>
                                   </tr>
                                 ) : (
@@ -439,17 +391,10 @@ const UrduContent = () => {
                                     </td>
                                     <td></td>
                                     <td className='product-remove text-right'>
-                                      {quizes.status[index] === 'unattemped' &&
-                                        <Link to={{ pathname: '/video-player', state: { course: 'Urdu', content: 'لفظ', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
-                                          <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                          Start
-                                        </Link>
-                                        // :
-                                        // <Link to={{ pathname: '/video-player', state: { qid: quizes._id, course: 'Math', content: 'digit', number: value.name[value.name.indexOf('(') + 1], index } }} >
-                                        //   <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                        //   View
-                                        // </Link>
-                                      }
+                                      <Link to={{ pathname: '/video-player', state: { course: 'Urdu', content: 'لفظ', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                        <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                        Start
+                                      </Link>
                                     </td>
                                   </tr>
                                 )

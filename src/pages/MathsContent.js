@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { getCourseQuiz } from "../helpers/quiz";
 import { ClipLoader } from "react-spinners";
 import AuthContext from "../context/Auth";
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
 
 
 const productList = [
@@ -84,16 +86,18 @@ const productList = [
 const MathsContent = () => {
   const [location, setLocation] = useState(false)
   const [loading, setLoading] = useState(false)
-  let { currentChild } = useContext(AuthContext)
+  const [check, setCheck] = useState(false)
+  let { currentChild, user, setCurrentChild } = useContext(AuthContext)
 
   const [quizes, setQuizes] = useState([])
-  const handleModel = () => {
-    setLocation(!location)
-  }
 
   useEffect(async () => {
+    if (currentChild === undefined) {
+      setCurrentChild(Cookies.get('currentChild'))
+      setCheck(!check)
+    }
     await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Math', setLoading })
-  }, [])
+  }, [check])
 
 
   const popularSlider = {
@@ -176,12 +180,10 @@ const MathsContent = () => {
                                     </td>
                                     <td></td>
                                     <td className='product-remove text-right'>
-                                      {quizes.status[index] === 'unattemped' &&
-                                        <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
-                                          <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                          Start
-                                        </Link>
-                                      }
+                                      <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                        <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                        Start
+                                      </Link>
                                     </td>
                                   </tr>
                                 ) :
@@ -209,12 +211,10 @@ const MathsContent = () => {
                                   </td>
                                   <td></td>
                                   <td className='product-remove text-right'>
-                                    {quizes.status[index] === 'unattemped' &&
-                                      <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
-                                        <i className='feather-play mr-1 font-xs text-grey-500'></i>
-                                        Start
-                                      </Link>
-                                    }
+                                    <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                      <i className='feather-play mr-1 font-xs text-grey-500'></i>
+                                      Start
+                                    </Link>
                                   </td>
                                 </tr>
                             ) :

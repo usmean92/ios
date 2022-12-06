@@ -76,7 +76,7 @@ class Footer extends Component {
                       <Link to='/mykids'>Parent Dashboard</Link>
                     </li>
                     <li>
-                      <Link to='/modela'>Alphabet Drawing</Link>
+                      <Link to='/admin-login'>Admin Dashboard</Link>
                     </li>
                     <li>
                       <Link to='/modelmath'>Math Drawing</Link>

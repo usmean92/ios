@@ -84,7 +84,7 @@ const Defaultsettings = () => {
                               Email
                             </label>
                             <input type='email' className='form-control'
-                              value='nabiha@gmail.com'
+                              value={email}
                               readOnly
                             />
                           </div>

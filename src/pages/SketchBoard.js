@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import AuthContext from "../context/Auth";
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
 import { SketchField, Tools } from "react-sketch";
-import { AiOutlineCheck } from 'react-icons/ai'
 import { makePrediction, updatequiz } from "../api/index";
 import 'antd/dist/antd.css'
 import { message } from 'antd';
@@ -32,26 +34,34 @@ const SketchBoard = () => {
   let history = useHistory()
   const sketchRef = useRef(null);
   const [error, setError] = useState();
-  const [prediction, setPrediction] = useState();
   const { answer, course, index, qid } = location.state;
+  const { user, setUser } = useContext(AuthContext)
+  let currentUser = user
 
-  const handleSubmit = () => {
+  if (currentUser.length === undefined) {
+    var decoded = jwt_decode(Cookies.get('token'));
+    currentUser._id = decoded.id
+    currentUser.name = decoded.name
+    setUser(currentUser)
+  }
+
+  const handleSubmit = async () => {
     const port = course === 'Math' ? '5000' : course == 'English' ? '5001' : '5002'
     const image = sketchRef.current.toDataURL();
-
-    setPrediction(undefined);
     setError(undefined);
-    makePrediction(image, port).then(setPrediction).catch(setError);
+    await makePrediction(image, port).then(res => {
+      compute(res)
+    }).catch(setError);
   };
 
   const handleClear = (e) => sketchRef.current.clear();
 
-  const compute = async () => {
-    if (!prediction) {
+  const compute = async (predicted) => {
+    if (!predicted) {
       message.error("Press 'Check' button first")
     }
     else {
-      if (answer === prediction) {
+      if (answer === predicted) {
         let response = await updatequiz(qid, { index })
         if (response.data.message) {
           message.success('Correct Answer')
@@ -88,23 +98,19 @@ const SketchBoard = () => {
             lineWidth={10}
           />
         </div>
-        {prediction && <h3 className="mt-3">Your answer is: {prediction}</h3>}
-        <div className="d-flex">
+
+        <div className="d-flex justify-content-center">
           <div className='button-container'>
             <button id='button' className='sketchbutton' onClick={handleClear}>
               Clear
             </button>
           </div>
           <div className='button-container'>
-            <button id='button' className='sketchbutton predict' onClick={handleSubmit}>
+            <button id='button' className='sketchbutton predict' onClick={() => handleSubmit()}>
               Check
             </button>
           </div>
-          <div className='button-container'>
-            <button id='button' className='btn btn-success' onClick={() => compute()}>
-              <AiOutlineCheck color='white' />
-            </button>
-          </div>
+
         </div>
 
         {error && <p style={{ color: "red" }}>Something went wrong</p>}

@@ -13,13 +13,12 @@ const AddKid = () => {
   const [firstname, setFirstname] = useState()
   const [lastname, setLastname] = useState()
   const [age, setAge] = useState()
-  const [grade, setGrade] = useState()
+  const [grade, setGrade] = useState('pg')
   const [error, setError] = useState()
   const [child, setChild] = useState('')
   const [loading, setLoading] = useState(false)
 
   const registerChild = async () => {
-
     if (firstname && lastname && age && grade) {
       setLoading(true)
       let data = {}
