@@ -2,16 +2,16 @@ import React, { useState, useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 import AuthContext from "../context/Auth";
-import { BiLeftArrowAlt } from 'react-icons/bi'
+import { BiLeftArrowAlt } from "react-icons/bi";
 
 const Appheader = () => {
-  const [isOpen, setOpen] = useState(false)
-  const [isActive, setActive] = useState(false)
-  let { currentChild } = useContext(AuthContext)
+  const [isOpen, setOpen] = useState(false);
+  const [isActive, setActive] = useState(false);
+  let { currentChild } = useContext(AuthContext);
 
-  const toggleOpen = () => setOpen(!isOpen)
-  const toggleActive = () => setActive(!isActive)
-  let history = useHistory()
+  const toggleOpen = () => setOpen(!isOpen);
+  const toggleActive = () => setActive(!isActive);
+  let history = useHistory();
 
   const navClass = `${isOpen ? " nav-active" : ""}`;
   const searchClass = `${isActive ? " show" : ""}`;
@@ -202,11 +202,24 @@ const Appheader = () => {
               <li>
                 <NavLink
                   activeClassName='active'
-                  to={{ pathname: '/child-report', state: { childId: currentChild } }}
+                  to={{
+                    pathname: "/child-report",
+                    state: { childId: currentChild },
+                  }}
                   className='nav-content-bttn open-font'
                   data-tab='chats'>
                   <i className='feather-clipboard mr-3'></i>
                   <span>Report</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  activeClassName='active'
+                  to='/games'
+                  className='nav-content-bttn open-font'
+                  data-tab='favorites'>
+                  <i className='feather-airplay mr-3'></i>
+                  <span>Games</span>
                 </NavLink>
               </li>
               <li>
@@ -226,8 +239,8 @@ const Appheader = () => {
                   to='/mykids'
                   className='nav-content-bttn open-font'
                   data-tab='favorites'>
-                  <i class=" feather-arrow-left me-2"></i>
-                  <span className="ms-3">Back to dashboard</span>
+                  <i class=' feather-arrow-left me-2'></i>
+                  <span className='ms-3'>Back to dashboard</span>
                 </NavLink>
               </li>
             </ul>
@@ -236,6 +249,6 @@ const Appheader = () => {
       </nav>
     </div>
   );
-}
+};
 
 export default Appheader;
