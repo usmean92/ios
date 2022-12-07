@@ -142,6 +142,7 @@ const Adminchat = () => {
   var decoded = jwt_decode(Cookies.get('admintoken'))
 
   useEffect(async () => {
+    setLoading(true)
     let response = await fetchconversation({ recieverId: decoded.id })
     if (response.data.message === false) {
       message.error(response.data.error)
@@ -156,6 +157,7 @@ const Adminchat = () => {
             setMessages(item.messages)
           }
         })
+        setLoading(false)
       }
     }
   }, [])
@@ -190,7 +192,7 @@ const Adminchat = () => {
 
                   <div className="section full mt-2 mb-2 pl-3">
                     <ul className="list-group list-group-flush">
-                      {parents.length !== undefined
+                      {loading ? <ClipLoader /> : parents.length !== undefined
                         ?
                         parents.map((value, index) => (
                           <li

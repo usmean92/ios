@@ -52,7 +52,7 @@ class AdminTopnav extends Component {
             </div>
           </li>
 
-          <li className='nav-item dropdown no-arrow mx-1'>
+          {/* <li className='nav-item dropdown no-arrow mx-1'>
             <a
               className='navi-link dropdown-toggle'
               href='/'
@@ -65,9 +65,9 @@ class AdminTopnav extends Component {
 
               <span className='badge badge-danger badge-counter'>3+</span>
             </a>
-          </li>
+          </li> */}
 
-          <li className='nav-item dropdown no-arrow mx-1'>
+          {/* <li className='nav-item dropdown no-arrow mx-1'>
             <a
               className='navi-link dropdown-toggle'
               href='/'
@@ -80,7 +80,7 @@ class AdminTopnav extends Component {
 
               <span className='badge badge-danger badge-counter'>7</span>
             </a>
-          </li>
+          </li> */}
 
           <li className='nav-item dropdown no-arrow'>
             <a

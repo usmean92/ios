@@ -16,7 +16,7 @@ const Login = () => {
     await login({ setUser, email, password, setLoading })
       .then((res) => {
         if (Cookies.get('token')) {
-          Cookies.remove('admintoken')
+          // Cookies.remove('admintoken')
           history.push('/mykids')
         }
       })

@@ -64,8 +64,13 @@
   color: rgb(49, 140, 220) !important
 }
 
-.chat-wrapper {
+.chat-wrapper,
+.modal-scroll {
   overflow-y: scroll;
+}
+
+.modal-scroll {
+  height: 300px !important;
 }
 
 .messages-content {

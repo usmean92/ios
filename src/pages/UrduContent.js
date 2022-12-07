@@ -273,12 +273,15 @@ const UrduContent = () => {
   const [quizes, setQuizes] = useState([])
   let { currentChild, user, setCurrentChild } = useContext(AuthContext)
 
-  useEffect(async () => {
-    if (currentChild === undefined) {
-      setCurrentChild(Cookies.get('currentChild'))
-      setCheck(!check)
+  useEffect(() => {
+    async function fetchData() {
+      if (currentChild === undefined) {
+        setCurrentChild(Cookies.get('currentChild'))
+        setCheck(!check)
+      }
+      await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Urdu', setLoading })
     }
-    await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Urdu', setLoading })
+    fetchData()
   }, [check])
 
   const popularSlider = {
