@@ -161,24 +161,14 @@ export default function App() {
 
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/login`}
-            component={!user._id ? Login : Hometwo}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/register`}
-            component={!user._id ? Register : Hometwo}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/forgot`}
-            component={Forgot}
+            path={`${process.env.PUBLIC_URL}/price`}
+            component={Price}
           />
 
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/reset-password`}
-            component={ResetPassword}
+            path={`${process.env.PUBLIC_URL}/contact-2`}
+            component={Contacttwo}
           />
 
           {user._id !== undefined || Cookies.get("token") !== undefined ? (
@@ -203,18 +193,6 @@ export default function App() {
                 exact
                 path={`${process.env.PUBLIC_URL}/blog-single`}
                 component={BlogSingle}
-              />
-
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/contact-2`}
-                component={Contacttwo}
-              />
-
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/price`}
-                component={Price}
               />
 
               <Route
@@ -393,6 +371,27 @@ export default function App() {
           ) : (
             <>
               <Login />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/login`}
+                component={!user._id ? Login : Hometwo}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/register`}
+                component={!user._id ? Register : Hometwo}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/forgot`}
+                component={Forgot}
+              />
+
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/reset-password`}
+                component={ResetPassword}
+              />
             </>
           )}
         </Switch>

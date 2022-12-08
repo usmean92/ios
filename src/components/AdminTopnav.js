@@ -97,7 +97,7 @@ class AdminTopnav extends Component {
                 className='w45 mt-n1 rounded-circle'
               />
               <span className='d-none d-lg-inline text-grey-600 fw-700 ml-2 mr-2 font-xssss'>
-                Douglas McGee
+                Maktub Admin
                 <i className='font-xsssss d-block text-grey-500 fw-500'></i>
               </span>
             </a>

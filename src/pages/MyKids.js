@@ -47,14 +47,16 @@ const MyKids = () => {
                       key={index}
                       className='col-xl-4 col-lg-6 col-md-6 col-sm-6'>
                       <div className='card mb-4 d-block w-100 shadow-xss rounded-lg p-4 border-0 text-center'>
-                        <button
-                          className='btn btn-danger border-0 position-absolute right-0 mr-2 top-0 mt-2'
-                          style={{ backgroundColor: 'transparent' }}
-                          onClick={() => { handleModel() }}
-                        >
-                          <HiOutlineTrash color='rgb(237, 76, 76)' size={20} />
-                        </button>
 
+                        <div className="dropdown position-absolute right-0 mr-2 top-0 mt-2">
+                          <TbDots size={20} type="button" id="optionsDwopdow" data-bs-toggle="dropdown" aria-expanded="false" />
+                          <ul className="dropdown-menu icon" aria-labelledby="optionsDwopdown">
+                            <li id="delete-button" className="p-2"
+                              onClick={() => handleModel()}>
+                              <HiOutlineTrash color='rgb(237, 76, 76)' /><span className="pt-2">Delete</span></li>
+                          </ul>
+                        </div>
+                      
                         <Modal
                           size="sm"
                           aria-labelledby="contained-modal-title-vcenter"
