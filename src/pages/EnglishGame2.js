@@ -9,7 +9,37 @@ import { ClipLoader } from "react-spinners";
 import AuthContext from "../context/Auth";
 import Iframe from "react-iframe";
 
-const EnglishGame = () => {
+const EnglishGame2 = () => {
+  const [location, setLocation] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [check, setCheck] = useState(false);
+
+  let { currentChild, user, setCurrentChild } = useContext(AuthContext);
+
+  const [quizes, setQuizes] = useState([]);
+
+  useEffect(async () => {
+    if (currentChild === undefined) {
+      setCurrentChild(Cookies.get("currentChild"));
+      setCheck(!check);
+    }
+    await getCourseQuiz({
+      childId: currentChild,
+      setQuizes,
+      title: "English",
+      setLoading,
+    });
+  }, [check]);
+
+  const popularSlider = {
+    arrows: false,
+    dots: false,
+    infinite: false,
+    speed: 300,
+    centerMode: false,
+    variableWidth: true,
+  };
+
   return (
     <>
       <div className='main-wrapper'>
@@ -24,13 +54,13 @@ const EnglishGame = () => {
                 <div className='card border-0 mt-2 rounded-10'>
                   <div className='card-body d-flex px-4 pb-0 pt-4'>
                     <h4 className='font-xss text-grey-800 mt-3 fw-700'>
-                      Alphabet Bubble Game
+                      Color By Letter
                     </h4>
                   </div>
                   <div className='card-body p-4'>
                     <div className='table-responsive'>
                       <Iframe
-                        url='https://www.turtlediary.com/game/abc-puzzle.html'
+                        url='https://www.turtlediary.com/game/color-by-letter.html'
                         width='1000px'
                         height='790'
                         id=''
@@ -54,4 +84,4 @@ const EnglishGame = () => {
   );
 };
 
-export default EnglishGame;
+export default EnglishGame2;

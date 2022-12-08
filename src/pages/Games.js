@@ -11,35 +11,39 @@ import jwt_decode from "jwt-decode";
 const memberList = [
   {
     imageUrl: "apoem.svg",
-    name: "Reading words",
+    name: "Alphabet Bubbles",
     email: "support@gmail.com",
     Connections: "500+",
     Follower: "80 M",
     Followings: "1,334",
+    url: "enggame",
   },
   {
     imageUrl: "abc.png",
-    name: "Color games",
+    name: "Color by letter",
     email: "support@gmail.com",
     Connections: "22 M",
     Follower: "822 k",
     Followings: "1,334",
+    url: "enggame2",
   },
   {
     imageUrl: "123.svg",
-    name: "Math Letters",
+    name: "Color By Number",
     email: "support@gmail.com",
     Connections: "45 k",
     Follower: "88.7 k",
     Followings: "4,532 ",
+    url: "mathgame",
   },
   {
     imageUrl: "urdu2.jpg",
-    name: "Urdu Sounds",
+    name: "Missing Number",
     email: "support@gmail.com",
     Connections: "500+",
     Follower: "88.7 k",
     Followings: "1,334",
+    url: "mathgame2",
   },
 ];
 
@@ -85,10 +89,11 @@ const Games = () => {
                       <div className='clearfix'></div>
                       <button
                         className='p-2 mt-4 d-inline-block border-0 text-white fw-700 lh-30 rounded-lg w200 text-center text-uppercase font-xsssss ls-3 bg-current'
-                        onClick={() => decoded.subscribed ? history.push({ pathname: '/enggame', state: {} }) : message.warning('You need to subscribe to use this feature')}
+                        onClick={() => decoded.subscribed ? history.push({ pathname: `/${value.url}`, state: {} }) : message.warning('You need to subscribe to use this feature')}
                       >
                         Play
                       </button>
+
 
                     </div>
                   </div>
