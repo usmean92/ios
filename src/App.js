@@ -78,6 +78,9 @@ import AdminChild from "./pages/Adminchilds";
 import ChildReport from "./pages/Childreport";
 import AdminLogin from "./pages/Adminlogin";
 import EnglishGame from "./pages/EnglishGame";
+import EnglishGame2 from "./pages/EnglishGame2";
+import MathGame from "./pages/MathGame";
+import MathGame2 from "./pages/MathGame2";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -246,8 +249,23 @@ export default function App() {
               />
               <Route
                 exact
+                path={`${process.env.PUBLIC_URL}/enggame2`}
+                component={EnglishGame2}
+              />
+              <Route
+                exact
                 path={`${process.env.PUBLIC_URL}/enggame`}
                 component={EnglishGame}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathgame`}
+                component={MathGame}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathgame2`}
+                component={MathGame2}
               />
               <Route
                 exact

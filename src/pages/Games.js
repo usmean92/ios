@@ -14,6 +14,7 @@ const memberList = [
     Connections: "500+",
     Follower: "80 M",
     Followings: "1,334",
+    url: "enggame",
   },
   {
     imageUrl: "abc.png",
@@ -22,6 +23,7 @@ const memberList = [
     Connections: "22 M",
     Follower: "822 k",
     Followings: "1,334",
+    url: "enggame2",
   },
   {
     imageUrl: "123.svg",
@@ -30,6 +32,7 @@ const memberList = [
     Connections: "45 k",
     Follower: "88.7 k",
     Followings: "4,532 ",
+    url: "mathgame",
   },
   {
     imageUrl: "urdu2.jpg",
@@ -38,6 +41,7 @@ const memberList = [
     Connections: "500+",
     Follower: "88.7 k",
     Followings: "1,334",
+    url: "mathgame2",
   },
 ];
 
@@ -81,7 +85,7 @@ class Games extends Component {
                         <div className='clearfix'></div>
 
                         <a
-                          href='/enggame'
+                          href={`/${value.url}`}
                           className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xsssss fw-700 ls-lg text-white'>
                           Play
                         </a>
