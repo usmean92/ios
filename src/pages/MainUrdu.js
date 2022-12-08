@@ -8,6 +8,15 @@ import { Link } from "react-router-dom";
 
 const popularList = [
   {
+    imageUrl: "urdu2.jpg",
+    title: "ہم نصابی سرگرمی",
+
+    tag: "Matching Similar",
+    lesson: "24 ",
+    status: "alert-warning text-warning",
+    link: "games",
+  },
+  {
     imageUrl: "urdu1.png",
     title: "اردو حروفِ تہجی",
 
@@ -16,15 +25,7 @@ const popularList = [
     status: "alert-warning text-warning",
     link: "urducourse",
   },
-  // {
-  //   imageUrl: "urdu2.jpg",
-  //   title: "ہم نصابی سرگرمی",
 
-  //   tag: "Matching Similar",
-  //   lesson: "24 ",
-  //   status: "alert-warning text-warning",
-  //   link: "games",
-  // },
   {
     imageUrl: "urdu3.jpg",
     title: "نظم",
@@ -32,7 +33,7 @@ const popularList = [
     tag: "Listening Activity",
     lesson: "14 ",
     status: "alert-warning text-warning",
-    link: "poems",
+    link: "urdupoems",
   },
 ];
 

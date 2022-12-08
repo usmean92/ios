@@ -17,8 +17,8 @@ class Upperheader extends Component {
             <div className='col-md-6 col-xs-6 d-none d-block-md'>
               <ul className='list-inline list-item-style mt-0 float-right'>
                 <li className='list-inline-item'>
-                  <Link to='#'>
-                    <i className='ti-user mr-2'></i> My Account
+                  <Link to='/maths'>
+                    <i className='ti-user mr-2'></i> My Accoun
                   </Link>
                 </li>
               </ul>
@@ -35,7 +35,7 @@ class Upperheader extends Component {
 
               <ul className='list-inline list-item-style mt-0 float-right'>
                 <li className='list-inline-item'>
-                  <Link to='#'>
+                  <Link to='/maths'>
                     <i className='ti-user mr-2'></i> My Account
                   </Link>
                 </li>

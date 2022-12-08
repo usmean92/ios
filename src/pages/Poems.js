@@ -3,8 +3,8 @@ import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
 import { getPoems } from "../helpers/child";
-import { ClipLoader } from 'react-spinners'
-import { useHistory } from 'react-router-dom'
+import { ClipLoader } from "react-spinners";
+import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
 import { message } from "antd";
@@ -53,14 +53,14 @@ const channelList = [
 ];
 
 const Poems = () => {
-  const [poems, setPoems] = useState([])
-  const [loading, setLoading] = useState(false)
-  let history = useHistory()
+  // const [poems, setPoems] = useState([])
+  const [loading, setLoading] = useState(false);
+  // let history = useHistory()
 
-  var decoded = jwt_decode(Cookies.get('token'));
-  useEffect(async () => {
-    let response2 = await getPoems({ setPoems, setLoading })
-  }, [])
+  // var decoded = jwt_decode(Cookies.get('token'));
+  // useEffect(async () => {
+  //   let response2 = await getPoems({ setPoems, setLoading })
+  // }, [])
 
   return (
     <>
@@ -73,7 +73,9 @@ const Poems = () => {
           <div className='middle-sidebar-bottom theme-dark-bg'>
             <div className='middle-sidebar-left'>
               <div className='row'>
-                {loading ? <ClipLoader /> :
+                {loading ? (
+                  <ClipLoader />
+                ) : (
                   channelList.map((value, index) => (
                     <div className='col-xl-4 col-lg-6 col-md-6' key={index}>
                       <div className='card mb-4 d-block w-100 shadow-xss rounded-lg p-xxl-5 p-4 border-0 text-center'>
@@ -115,7 +117,7 @@ const Poems = () => {
 
                         <button
                           className='p-2 mt-4 d-inline-block border-0 text-white fw-700 lh-30 rounded-lg w200 text-center text-uppercase font-xsssss ls-3 bg-current'
-                          onClick={() => decoded.subscribed ? history.push({ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }) : message.warning('You need to subscribe to use this feature')}
+                          // onClick={() => decoded.subscribed ? history.push({ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }) : message.warning('You need to subscribe to use this feature')}
                         >
                           Play
                         </button>
@@ -126,7 +128,8 @@ const Poems = () => {
                         </Link> */}
                       </div>
                     </div>
-                  ))}
+                  ))
+                )}
               </div>
             </div>
           </div>
@@ -136,7 +139,6 @@ const Poems = () => {
       </div>
     </>
   );
-}
-
+};
 
 export default Poems;

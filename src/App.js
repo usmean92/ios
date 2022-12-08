@@ -81,6 +81,17 @@ import EnglishGame from "./pages/EnglishGame";
 import EnglishGame2 from "./pages/EnglishGame2";
 import MathGame from "./pages/MathGame";
 import MathGame2 from "./pages/MathGame2";
+import MathPoems from "./pages/Math Poems";
+import EnglishPoems from "./pages/English Poems";
+import UrduPoems from "./pages/Urdu Poem";
+import MathGame3 from "./pages/MathGame3";
+import MathGame4 from "./pages/MathGame4";
+import MathGame5 from "./pages/MathGame5";
+import MathGame6 from "./pages/MathGame6";
+import EnglishGame3 from "./pages/EnglishGame3";
+import EnglishGame4 from "./pages/EnglishGame4";
+import EnglishGame5 from "./pages/EnglishGame5";
+import EnglishGame6 from "./pages/EnglishGame6";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -115,6 +126,7 @@ export default function App() {
             path={`${process.env.PUBLIC_URL}/notfound`}
             component={Notfound}
           />
+
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/modelmath`}
@@ -183,6 +195,22 @@ export default function App() {
 
           {user._id !== undefined || Cookies.get("token") !== undefined ? (
             <>
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/engpoems`}
+                component={EnglishPoems}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathpoems`}
+                component={MathPoems}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/urdupoems`}
+                component={UrduPoems}
+              />
+
               <Route
                 exact
                 path={`${process.env.PUBLIC_URL}/gradeselect`}
@@ -266,6 +294,46 @@ export default function App() {
                 exact
                 path={`${process.env.PUBLIC_URL}/mathgame2`}
                 component={MathGame2}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathgame3`}
+                component={MathGame3}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathgame4`}
+                component={MathGame4}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathgame5`}
+                component={MathGame5}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/mathgame6`}
+                component={MathGame6}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/enggame3`}
+                component={EnglishGame3}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/enggame4`}
+                component={EnglishGame4}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/enggame5`}
+                component={EnglishGame5}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/enggame6`}
+                component={EnglishGame6}
               />
               <Route
                 exact

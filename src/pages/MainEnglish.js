@@ -8,6 +8,15 @@ import { Link } from "react-router-dom";
 
 const popularList = [
   {
+    imageUrl: "abc.png",
+    title: "Listening Activity",
+
+    tag: "Listening Activity",
+    lesson: "26 ",
+    status: "alert-warning text-warning",
+    link: "engcourse",
+  },
+  {
     imageUrl: "abc.svg",
     title: "Alphabet Sequence",
 
@@ -23,7 +32,7 @@ const popularList = [
     tag: "Listening Activity",
     lesson: "14 ",
     status: "alert-warning text-warning",
-    link: "poems",
+    link: "engpoems",
   },
 ];
 

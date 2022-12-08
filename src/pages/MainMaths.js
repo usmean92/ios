@@ -8,23 +8,24 @@ import { Link } from "react-router-dom";
 
 const popularList = [
   {
+    imageUrl: "game.svg",
+    title: "Listening Activity",
+
+    tag: "Matching Similar",
+    lesson: "24 ",
+    status: "alert-warning text-warning",
+    link: "games",
+  },
+  {
     imageUrl: "123.svg",
     title: "Number Sequence",
 
     tag: "Drawing Activity",
-    lesson: "10 ",
+    lesson: "10",
     status: "alert-warning text-warning",
     link: "mathscourse",
   },
-  // {
-  //   imageUrl: "game.svg",
-  //   title: "Color Games",
 
-  //   tag: "Matching Similar",
-  //   lesson: "24 ",
-  //   status: "alert-warning text-warning",
-  //   link: "games",
-  // },
   {
     imageUrl: "poems.png",
     title: "Poems",
@@ -32,7 +33,7 @@ const popularList = [
     tag: "Listening Activity",
     lesson: "14 ",
     status: "alert-warning text-warning",
-    link: "poems",
+    link: "mathpoems",
   },
 ];
 
@@ -88,7 +89,7 @@ class MainMaths extends Component {
 
                             <h4 className='fw-700 font-xss mt-3 lh-28 mt-0'>
                               <Link
-                                to='/coursedetails'
+                                to={`/${value.link}`}
                                 className='text-dark text-grey-900'>
                                 {value.title}
                               </Link>

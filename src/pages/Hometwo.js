@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Header from "../components/Header";
 import Upperheader from "../components/Upperheader";
 import Footer from "../components/Footer";
+import Iframe from "react-iframe";
 
 const iconList = [
   {
@@ -64,7 +65,7 @@ class Hometwo extends Component {
                   <div className='row'>
                     <div className='col-lg-5'>
                       <a
-                        href='/'
+                        href='/register'
                         className='btn border-0 bg-dark text-uppercase p-3 text-white fw-700 ls-3 rounded-lg d-inline-block font-xssss btn-light mt-3 w200 aos-init aos-animate'>
                         Start Free Trial
                       </a>
@@ -72,9 +73,9 @@ class Hometwo extends Component {
 
                     <div className='col-lg-4'>
                       <a
-                        href='/'
+                        href='/maths'
                         className='btn border-0 bg-primary text-uppercase p-3 text-white fw-700 ls-3 rounded-lg d-inline-block font-xssss btn-light mt-3 w200 aos-init aos-animate'>
-                        Learn More
+                        Dashboard
                       </a>
                     </div>
                   </div>
@@ -83,11 +84,11 @@ class Hometwo extends Component {
             </div>
           </div>
         </div>
-        <div id="service" className='service-wrapper layer-after pt-lg-5 mt-5'>
+        <div id='service' className='service-wrapper layer-after pt-lg-5 mt-5'>
           <div className='container'>
             <div className='row justify-content-center'>
               <div className='page-title style1 col-xl-6 col-lg-8 col-md-10 text-center mb-5'>
-                <span  className='font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-xl ls-2 alert-warning d-inline-block text-warning mr-1'>
+                <span className='font-xsssss fw-700 pl-3 pr-3 lh-32 text-uppercase rounded-xl ls-2 alert-warning d-inline-block text-warning mr-1'>
                   what we do
                 </span>
                 <h2 className='text-grey-900 fw-700 font-xxl pb-3 mb-0 mt-3 d-block lh-3'>
@@ -123,7 +124,9 @@ class Hometwo extends Component {
           </div>
         </div>
 
-        <div id="about" className='feature-wrapper layer-after pt-lg--7 mt-5 pb-5'>
+        <div
+          id='about'
+          className='feature-wrapper layer-after pt-lg--7 mt-5 pb-5'>
           <div className='container'>
             <div className='row'>
               <div className='col-lg-6'>
@@ -134,7 +137,7 @@ class Hometwo extends Component {
                 />
               </div>
               <div className='col-lg-4 offset-lg-1'>
-                <span  className='font-xsssss fw-700 pl-3 pr-3 lh-32 mt-4 text-uppercase rounded-xl ls-2 alert-warning d-inline-block text-warning mr-1'>
+                <span className='font-xsssss fw-700 pl-3 pr-3 lh-32 mt-4 text-uppercase rounded-xl ls-2 alert-warning d-inline-block text-warning mr-1'>
                   Why Maktub
                 </span>
                 <h2 className='text-grey-900 fw-700 display1-size pb-3 mb-0 mt-3 d-block lh-3 aos-init aos-animate'>
@@ -186,40 +189,19 @@ class Hometwo extends Component {
               </div>
             </div>
             <div className='row justify-content-center'>
-              <div className='col-lg-10'>
-                <div
-                  className='card border-0 mb-0 rounded-lg overflow-hidden live-stream bg-image-center bg-image-contain'
-                  style={{
-                    backgroundImage: `url("assets/images/bg-img-1.png")`,
-                  }}>
-                  <div className='card-body text-center p-2 position-absolute w-100 bottom-0 bg-gradiant-bottom'>
-                    <a
-                      href='/'
-                      className='btn-round-xl d-md-inline-block d-none bg-blur m-3 mr-0 z-index-1'>
-                      <i className='feather-grid text-white font-md'></i>
-                    </a>
-                    <a
-                      href='/'
-                      className='btn-round-xl d-md-inline-block d-none bg-blur m-3 z-index-1'>
-                      <i className='feather-mic-off text-white font-md'></i>
-                    </a>
-                    <a href='/' className='btn-round-xxl bg-danger z-index-1'>
-                      <i className='feather-phone-off text-white font-md'></i>
-                    </a>
-                    <a
-                      href='/'
-                      className='btn-round-xl d-md-inline-block d-none bg-blur m-3 z-index-1'>
-                      <i className='ti-video-camera text-white font-md'></i>
-                    </a>
-                    <a
-                      href='/'
-                      className='btn-round-xl d-md-inline-block d-none bg-blur m-3 ml-0 z-index-1'>
-                      <i className='ti-settings text-white font-md'></i>
-                    </a>
-                    <span className='p-2 bg-blur z-index-1 text-white fw-700 font-xssss rounded-lg right-15 position-absolute mb-4 bottom-0'>
-                      44:00
-                    </span>
-                  </div>
+              <div className='card-body p-4'>
+                <div className='table-responsive'>
+                  <Iframe
+                    url='https://www.turtlediary.com/game/complete-the-missing-number.html'
+                    width='1000px'
+                    height='700'
+                    id=''
+                    className=''
+                    display='block'
+                    position='relative'
+                    scrolling='no'
+                    styles={{ marginTop: "-170px" }}
+                  />
                 </div>
               </div>
             </div>
@@ -289,7 +271,7 @@ class Hometwo extends Component {
             </div>
             <div className='text-center'>
               <a
-                href='/'
+                href='/register'
                 className='btn border-0  bg-primary text-uppercase p-3 text-white fw-700 ls-3 rounded-lg d-inline-block font-xssss btn-light mt-3 w200 aos-init aos-animate'>
                 Sign up for free
               </a>

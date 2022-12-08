@@ -8,40 +8,44 @@ import Subscribe from "../components/Subscribe";
 
 const memberList = [
   {
-    imageUrl: "apoem.svg",
+    imageUrl: "alphabet.png",
     name: "Alphabet Bubbles",
-    email: "support@gmail.com",
-    Connections: "500+",
-    Follower: "80 M",
-    Followings: "1,334",
     url: "enggame",
   },
   {
-    imageUrl: "abc.png",
+    imageUrl: "poems.png",
     name: "Color by letter",
-    email: "support@gmail.com",
-    Connections: "22 M",
-    Follower: "822 k",
-    Followings: "1,334",
     url: "enggame2",
   },
   {
     imageUrl: "123.svg",
     name: "Color By Number",
-    email: "support@gmail.com",
-    Connections: "45 k",
-    Follower: "88.7 k",
-    Followings: "4,532 ",
     url: "mathgame",
   },
   {
     imageUrl: "urdu2.jpg",
     name: "Missing Number",
-    email: "support@gmail.com",
-    Connections: "500+",
-    Follower: "88.7 k",
-    Followings: "1,334",
     url: "mathgame2",
+  },
+  {
+    imageUrl: "apoem.svg",
+    name: "Identify the shapes",
+    url: "mathgame3",
+  },
+  {
+    imageUrl: "stories.webp",
+    name: "Number Macthing",
+    url: "mathgame4",
+  },
+  {
+    imageUrl: "abc.png",
+    name: "Animal Crossword",
+    url: "enggame3",
+  },
+  {
+    imageUrl: "agame.png",
+    name: "Connect ABC",
+    url: "enggame4",
   },
 ];
 

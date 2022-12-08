@@ -4,16 +4,16 @@ import Cookies from "js-cookie";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const Header = (props) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => setIsOpen(!isOpen)
+  const toggleOpen = () => setIsOpen(!isOpen);
   const navClass = `${isOpen ? " show" : ""}`;
   const { divClass, color = "light" } = props;
   let colorClass;
   if (color === "dark") {
     colorClass = "text-white";
   }
-  let history = useHistory()
+  let history = useHistory();
   return (
     <div className={`header-wrapper pt-3 pb-3 shadow-xss ${divClass}`}>
       <div className='container'>
@@ -39,10 +39,8 @@ const Header = (props) => {
                     <Nav.Link className='nav-link' href='/'>
                       Home
                     </Nav.Link>
-                    <Nav.Link className='nav-link' href='/'>
-                      About Us
-                    </Nav.Link>
-                    <Nav.Link className='nav-link' href='/'>
+
+                    <Nav.Link className='nav-link' href='/#service'>
                       What we do
                     </Nav.Link>
                     <Nav.Link className='nav-link' href='/price'>
@@ -55,32 +53,34 @@ const Header = (props) => {
             </div>
           </div>
           <div className='col-lg-4 text-right d-none d-lg-block'>
-            {!Cookies.get('token') ? (<>
-              <a
-                href='/login'
-                className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
-                Login
-              </a>
-              <a
-                href='/#'
-                className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
-                Start Your Free Trial
-              </a></>)
-              :
+            {!Cookies.get("token") ? (
+              <>
+                <a
+                  href='/login'
+                  className='mt-3 p-0 btn p-2 lh-24 w100 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
+                  Login
+                </a>
+                <a
+                  href='/register'
+                  className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'>
+                  Start Your Free Trial
+                </a>
+              </>
+            ) : (
               <button
                 className='mt-3 ml-4 p-0 btn p-2 lh-24 w200 ml-1 ls-3 d-inline-block rounded-xl bg-current font-xssss fw-700 ls-lg text-white'
                 onClick={() => {
-                  Cookies.remove('token')
-                  history.push('/')
+                  Cookies.remove("token");
+                  history.push("/");
                 }}>
                 Logout
-              </button>}
-
+              </button>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Header;
