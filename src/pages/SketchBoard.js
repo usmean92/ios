@@ -38,7 +38,7 @@ const SketchBoard = () => {
 
   const sketchRef = useRef(null);
   const [error, setError] = useState();
-  const { answer, course, index, qid } = location.state;
+  const { answer, course, content, index, qid } = location.state;
   const { user, setUser } = useContext(AuthContext)
   let currentUser = user
 
@@ -95,7 +95,7 @@ const SketchBoard = () => {
       <div>
         <header className='header'>
           <img src={logo} className='logo' alt='logo' />
-          <h1 className='title'>Draw a digit</h1>
+          <h1 className='title'>Draw the {content}</h1>
         </header>
         <div style={SKETCH_CONTAINER_STYLE}>
           <SketchField

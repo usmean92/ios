@@ -28,6 +28,8 @@ const Popupchat = () => {
     setUser(currentUser)
   }
 
+  console.log('ff: ', currentUser)
+
   useEffect(async () => {
     setLoading(true)
     await fetchConversation({ senderId: currentUser._id, setConversation, setLoading })

@@ -21,7 +21,7 @@ export const VideoPlayer = () => {
       <div>
         <Link to={{
           pathname: '/sketch-board',
-          state: { qid, answer: number, course, index }
+          state: { qid, answer: number, course, index, content }
         }} className='btn dark-btn mt-2' >Take Quiz</Link>
 
       </div>

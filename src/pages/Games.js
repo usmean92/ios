@@ -87,12 +87,12 @@ const Games = () => {
                       </h4>
 
                       <div className='clearfix'></div>
-                      <button
+                      <NavLink
+                        to={`/${value.url}`}
                         className='p-2 mt-4 d-inline-block border-0 text-white fw-700 lh-30 rounded-lg w200 text-center text-uppercase font-xsssss ls-3 bg-current'
-                        onClick={() => decoded.subscribed ? history.push({ pathname: `/${value.url}`, state: {} }) : message.warning('You need to subscribe to use this feature')}
                       >
                         Play
-                      </button>
+                      </NavLink>
 
 
                     </div>
