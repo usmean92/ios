@@ -220,7 +220,6 @@ const MathsContent = () => {
                                   </td>
                                   <td></td>
                                   <td className='product-remove text-right'>
-                                    {console.log('location:', location)}
                                     <Link to={{
                                       pathname: '/video-player',
                                       state: {

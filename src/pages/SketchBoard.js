@@ -71,7 +71,6 @@ const SketchBoard = () => {
       message.error("Press 'Check' button first")
     }
     else {
-      console.log('ff: ', predicted)
       if (answer === predicted) {
         let response = await updatequiz(qid, { index })
         if (response.data.message) {

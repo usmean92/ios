@@ -141,6 +141,7 @@ const Adminchat = () => {
   const [messages, setMessages] = useState([])
   const [check, setCheck] = useState(false)
   const [chat, setChat] = useState('')
+  const [error, setError] = useState('')
 
   var decoded = jwt_decode(Cookies.get('admintoken'))
 
@@ -150,8 +151,10 @@ const Adminchat = () => {
     if (response.data.message === false) {
       message.error(response.data.error)
     } else {
+
       setConversation(response.data.conversation)
       let response2 = await fetchparent({ conversations: response.data.conversation })
+
       if (response2.data.message !== false) {
         setParents(response2.data.parents)
         setCurrent(response2.data.parents[0])
@@ -160,8 +163,10 @@ const Adminchat = () => {
             setMessages(item.messages)
           }
         })
-        setLoading(false)
+      } else {
+        setError('No messages in the inbox')
       }
+      setLoading(false)
     }
   }, [check])
 
@@ -180,6 +185,10 @@ const Adminchat = () => {
     if (response.data.message) {
       message.success('Conversation Deleted')
       setCheck(!check)
+      setParents([])
+      setMessages([])
+
+
     }
   }
 
@@ -204,6 +213,8 @@ const Adminchat = () => {
 
                   <div className="section full mt-2 mb-2 pl-3">
                     <ul className="list-group list-group-flush">
+                      <p className='text-gray-300'>{error}</p>
+
                       {loading ? <ClipLoader /> : parents.length !== undefined
                         ?
                         parents.map((value, index) => (

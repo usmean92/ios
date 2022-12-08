@@ -249,7 +249,8 @@ const Adminproductadd = (props) => {
 
                                         <Button
                                           onClick={() => {
-                                            deleteparent(value._id)
+                                            console.log('fdfds: ', value._id)
+                                            // deleteparent(value._id)
                                             setCheck(!check)
                                             handleModel()
                                           }}
@@ -259,7 +260,7 @@ const Adminproductadd = (props) => {
                                         </Button>
                                         <Button
                                           onClick={() => {
-                                            handleModel();
+                                            handleModel()
                                           }}
                                           className="border-0 btn rounded-6 lh-2 p-3 mt-0 mb-2 text-grey-600 bg-greylight font-xssss text-uppercase fw-600 ls-3 ms-1"
                                         >
