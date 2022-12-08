@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import Appfooter from "../components/Appfooter";
 import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
+import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getCourseQuiz } from "../helpers/quiz";
 import { ClipLoader } from "react-spinners";
 import AuthContext from "../context/Auth";
 import Cookies from "js-cookie";
-import jwt_decode from "jwt-decode";
 
 
 const productList = [
@@ -92,12 +92,15 @@ const MathsContent = () => {
   const [quizes, setQuizes] = useState([])
 
   useEffect(async () => {
+
     if (currentChild === undefined) {
       setCurrentChild(Cookies.get('currentChild'))
       setCheck(!check)
     }
     await getCourseQuiz({ childId: currentChild, setQuizes, title: 'Math', setLoading })
   }, [check])
+
+
 
 
   const popularSlider = {
@@ -180,7 +183,13 @@ const MathsContent = () => {
                                     </td>
                                     <td></td>
                                     <td className='product-remove text-right'>
-                                      <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                      <Link to={{
+                                        pathname: '/video-player',
+                                        state: {
+                                          course: 'Math', content: 'digit',
+                                          number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index
+                                        }
+                                      }} >
                                         <i className='feather-play mr-1 font-xs text-grey-500'></i>
                                         Start
                                       </Link>
@@ -211,7 +220,16 @@ const MathsContent = () => {
                                   </td>
                                   <td></td>
                                   <td className='product-remove text-right'>
-                                    <Link to={{ pathname: '/video-player', state: { course: 'Math', content: 'digit', number: productList[index].name[productList[index].name.indexOf('(') + 1], qid: quizes._id, index } }} >
+                                    {console.log('location:', location)}
+                                    <Link to={{
+                                      pathname: '/video-player',
+                                      state: {
+                                        course: location, content: 'digit',
+                                        number: productList[index].name[productList[index].name.indexOf('(') + 1],
+                                        qid: quizes._id, index
+
+                                      }
+                                    }} >
                                       <i className='feather-play mr-1 font-xs text-grey-500'></i>
                                       Start
                                     </Link>
@@ -229,6 +247,8 @@ const MathsContent = () => {
             </div>
           </div>
         </div>
+
+
 
         <Appfooter />
       </div>

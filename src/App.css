@@ -77,3 +77,7 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
+
+.icon {
+  cursor: pointer;
+}

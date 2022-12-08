@@ -8,6 +8,8 @@ import 'antd/dist/antd.css'
 import { message } from 'antd';
 import { useLocation, useHistory } from "react-router-dom";
 import '../css/sketchboard.css'
+import { Modal, Button } from "react-bootstrap";
+import { BsCheck2All } from 'react-icons/bs'
 
 const logo = '/logo.png'
 const pixels = (count) => `${count}px`;
@@ -32,6 +34,8 @@ const SKETCH_CONTAINER_STYLE = {
 const SketchBoard = () => {
   let location = useLocation()
   let history = useHistory()
+  const [modal, setModal] = useState(false)
+
   const sketchRef = useRef(null);
   const [error, setError] = useState();
   const { answer, course, index, qid } = location.state;
@@ -54,6 +58,12 @@ const SketchBoard = () => {
     }).catch(setError);
   };
 
+  const handleModel = () => {
+    setModal(!modal)
+    history.goBack()
+    history.goBack()
+  }
+
   const handleClear = (e) => sketchRef.current.clear();
 
   const compute = async (predicted) => {
@@ -61,12 +71,13 @@ const SketchBoard = () => {
       message.error("Press 'Check' button first")
     }
     else {
+      console.log('ff: ', predicted)
       if (answer === predicted) {
         let response = await updatequiz(qid, { index })
         if (response.data.message) {
-          message.success('Correct Answer')
-          history.goBack()
-          history.goBack()
+          setModal(!modal)
+          // message.success('Correct Answer')
+
         } else {
           message.error(response.data.error)
         }
@@ -115,7 +126,25 @@ const SketchBoard = () => {
 
         {error && <p style={{ color: "red" }}>Something went wrong</p>}
       </div>
-    </div>
+
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        style={{ width: '100%', height: 500 }}
+        show={modal}
+      >
+        <Modal.Body className="text-center p-4">
+          <div style={{ display: 'flex', margin: 'auto', justifyContent: 'center', alignItems: 'center', textAlign: 'center', alignSelf: 'center', backgroundColor: '#B1F2AD', width: 100, height: 100, padding: 10, borderRadius: 100 }}>
+            <BsCheck2All color='white' size={50} />
+          </div>
+          <p className="text-grey-800 fs-3 mt-3 mb-4">
+            Correct Answer
+          </p>
+          <Button className='btn btn-primary' onClick={() => handleModel()}>Close</Button>
+        </Modal.Body>
+      </Modal>
+    </div >
   );
 };
 

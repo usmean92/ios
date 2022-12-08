@@ -24,6 +24,7 @@ const AdminLogin = () => {
           } else {
             // Cookies.remove('token')
             Cookies.set('admintoken', response.data.token)
+            Cookies.set('role', 'admin')
             setAdmin(response.data.admin)
             history.push('/admin')
           }

@@ -21,6 +21,7 @@ export const FETCHREPORTS = (childId) => `child/report/${childId}`
 export const DELETEPARENT = (parentId) => `admin/delete-parent/${parentId}`
 export const POSTCONVERSATION = '/chat/post-conversation'
 export const FETCHCONVERSATION = '/chat/conversation'
+export const DELETECONVERSATION = (cid) => `/chat/delete-conversation/${cid}`
 export const ADMINLOGIN = '/admin/login'
 export const PARENTINFO = '/admin/get-parent'
 export const ADMINID = '638f56476fba742808a471ef'
