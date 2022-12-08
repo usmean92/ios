@@ -28,11 +28,12 @@ const Popupchat = () => {
     setUser(currentUser)
   }
 
+  console.log('ff: ', currentUser)
+
   useEffect(async () => {
+    setLoading(true)
     await fetchConversation({ senderId: currentUser._id, setConversation, setLoading })
   }, [check])
-
-
 
   const sendMessage = () => {
     createConversation({ senderId: currentUser._id, chat, setLoading, setConversation, check, setCheck })
@@ -73,7 +74,7 @@ const Popupchat = () => {
               </div>
             </div>
 
-            <div className="modal-popup-body w-100 p-4 h-auto">
+            <div className="modal-popup-body modal-scroll scroll-bar w-100 p-4 h-auto" >
               {loading ? <ClipLoader size={30} /> : conversation !== undefined &&
                 conversation.messages.map((message, index) => (
                   <>

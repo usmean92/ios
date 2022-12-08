@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Adminsidebar from '../components/Adminsidebar';
 import AdminTopnav from '../components/AdminTopnav';
 import Adminfooter from '../components/Adminfooter';
-import { fetchconversation, fetchparent } from '../api';
+import { deleteconversation, fetchconversation, fetchparent } from '../api';
 import { createConversation } from '../helpers/chat';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
 import 'antd/dist/antd.css'
 import { message } from 'antd';
 import { ClipLoader } from 'react-spinners';
+import { TbDots } from 'react-icons/tb'
+import { HiOutlineTrash } from 'react-icons/hi';
 
 const chatList = [
   {
@@ -137,17 +139,22 @@ const Adminchat = () => {
   const [parents, setParents] = useState([])
   const [current, setCurrent] = useState(chatList[0])
   const [messages, setMessages] = useState([])
+  const [check, setCheck] = useState(false)
   const [chat, setChat] = useState('')
+  const [error, setError] = useState('')
 
   var decoded = jwt_decode(Cookies.get('admintoken'))
 
   useEffect(async () => {
+    setLoading(true)
     let response = await fetchconversation({ recieverId: decoded.id })
     if (response.data.message === false) {
       message.error(response.data.error)
     } else {
+
       setConversation(response.data.conversation)
       let response2 = await fetchparent({ conversations: response.data.conversation })
+
       if (response2.data.message !== false) {
         setParents(response2.data.parents)
         setCurrent(response2.data.parents[0])
@@ -156,9 +163,12 @@ const Adminchat = () => {
             setMessages(item.messages)
           }
         })
+      } else {
+        setError('No messages in the inbox')
       }
+      setLoading(false)
     }
-  }, [])
+  }, [check])
 
   const changeInbox = (value) => {
     setCurrent(value)
@@ -167,6 +177,19 @@ const Adminchat = () => {
         setMessages(item.messages)
       }
     })
+  }
+
+  const deleteConversation = async (index) => {
+    let cid = conversations[index]._id
+    let response = await deleteconversation(cid)
+    if (response.data.message) {
+      message.success('Conversation Deleted')
+      setCheck(!check)
+      setParents([])
+      setMessages([])
+
+
+    }
   }
 
   const sendMessage = () => {
@@ -190,35 +213,55 @@ const Adminchat = () => {
 
                   <div className="section full mt-2 mb-2 pl-3">
                     <ul className="list-group list-group-flush">
-                      {parents.length !== undefined
+                      <p className='text-gray-300'>{error}</p>
+
+                      {loading ? <ClipLoader /> : parents.length !== undefined
                         ?
                         parents.map((value, index) => (
                           <li
                             key={index}
-                            className="bg-green list-group-item no-icon pl-0"
+                            className="d-flex list-group-item no-icon pl-0"
                             onClick={(e) => {
                               e.preventDefault()
                               changeInbox(value)
                             }}
                           >
-                            <figure className="avatar float-left mb-0 mr-3">
-                              <img
-                                src={`assets/images/user.png`}
-                                alt="avater"
-                                className="w45 rounded-circle"
-                              />
-                            </figure>
-                            <h3 className="fw-600 mb-0 mt-1">
-                              <a
-                                className="font-xsss fw-700 text-grey-900 text-dark d-block"
-                                href="/admin-chat"
-                              >
-                                {value.name}
-                              </a>
-                            </h3>
-                            <span className="d-block fw-400" style={{ fontSize: 10 }}>
-                              {value.email}
-                            </span>
+                            <div className='col-md-3'>
+
+                              <figure className="avatar float-left mb-0 mr-3">
+                                <img
+                                  src={`assets/images/user.png`}
+                                  alt="avater"
+                                  className="w45 rounded-circle"
+                                />
+                              </figure>
+                            </div>
+
+                            <div className='col-md-9'>
+                              <h3 className="fw-600 mb-0 mt-1">
+                                <a
+                                  className="font-xsss fw-700 text-grey-900 text-dark d-block"
+                                  href="/admin-chat"
+                                >
+                                  {value.name}
+                                </a>
+                              </h3>
+                              <span className="d-block fw-400" style={{ fontSize: 10 }}>
+                                {value.email}
+                              </span>
+                            </div>
+
+
+
+                            <div className="dropdown col-md-2">
+                              <TbDots type="button" id="optionsDwopdow" data-bs-toggle="dropdown" aria-expanded="false" />
+                              <ul className="dropdown-menu icon" aria-labelledby="optionsDwopdown">
+                                <li id="delete-button"
+                                  onClick={() => deleteConversation(index)}>
+                                  <HiOutlineTrash color='rgb(237, 76, 76)' /><span>Delete</span></li>
+                              </ul>
+                            </div>
+
                             {/* <span className="badge mt-0 text-grey-500 badge-pill">
                               {value.time}
                             </span> */}

@@ -10,36 +10,6 @@ import AuthContext from "../context/Auth";
 import Iframe from "react-iframe";
 
 const EnglishGame = () => {
-  const [location, setLocation] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [check, setCheck] = useState(false);
-
-  let { currentChild, user, setCurrentChild } = useContext(AuthContext);
-
-  const [quizes, setQuizes] = useState([]);
-
-  useEffect(async () => {
-    if (currentChild === undefined) {
-      setCurrentChild(Cookies.get("currentChild"));
-      setCheck(!check);
-    }
-    await getCourseQuiz({
-      childId: currentChild,
-      setQuizes,
-      title: "English",
-      setLoading,
-    });
-  }, [check]);
-
-  const popularSlider = {
-    arrows: false,
-    dots: false,
-    infinite: false,
-    speed: 300,
-    centerMode: false,
-    variableWidth: true,
-  };
-
   return (
     <>
       <div className='main-wrapper'>

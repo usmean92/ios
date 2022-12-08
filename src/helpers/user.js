@@ -34,6 +34,7 @@ export const login = async ({ setUser, email, password, setLoading }) => {
     } else {
       setUser(response.data.user)
       Cookies.set('token', response.data.token)
+      Cookies.set('role', 'parent')
     }
   } catch (err) {
     console.log(err.message)

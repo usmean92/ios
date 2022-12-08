@@ -22,7 +22,7 @@ export const createConversation = async ({ senderId, setConversation, setCheck, 
 }
 
 export const fetchConversation = async ({ senderId, recieverId, setConversation, setLoading }) => {
-  setLoading(true)
+  // setLoading(true)
   try {
     let response = await fetchconversation({ senderId, recieverId })
     if (response.data.message === false) {

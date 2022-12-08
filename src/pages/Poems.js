@@ -4,7 +4,7 @@ import Navheader from "../components/Navheader";
 import Appheader from "../components/Appheader";
 import { getPoems } from "../helpers/child";
 import { ClipLoader } from "react-spinners";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
 import { message } from "antd";
@@ -53,14 +53,14 @@ const channelList = [
 ];
 
 const Poems = () => {
-  // const [poems, setPoems] = useState([])
+  const [poems, setPoems] = useState([]);
   const [loading, setLoading] = useState(false);
-  // let history = useHistory()
+  let history = useHistory();
 
-  // var decoded = jwt_decode(Cookies.get('token'));
-  // useEffect(async () => {
-  //   let response2 = await getPoems({ setPoems, setLoading })
-  // }, [])
+  var decoded = jwt_decode(Cookies.get("token"));
+  useEffect(async () => {
+    let response2 = await getPoems({ setPoems, setLoading });
+  }, []);
 
   return (
     <>
@@ -115,12 +115,28 @@ const Poems = () => {
 
                         <div className='clearfix'></div>
 
-                        <button
+                        <NavLink
+                          to={{
+                            pathname: "/play-poem",
+                            state: { title: value.title, poem: poems[index] },
+                          }}
                           className='p-2 mt-4 d-inline-block border-0 text-white fw-700 lh-30 rounded-lg w200 text-center text-uppercase font-xsssss ls-3 bg-current'
-                          // onClick={() => decoded.subscribed ? history.push({ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }) : message.warning('You need to subscribe to use this feature')}
-                        >
+                          onClick={() =>
+                            decoded.subscribed
+                              ? history.push({
+                                  pathname: "/play-poem",
+                                  state: {
+                                    title: value.title,
+                                    poem: poems[index],
+                                  },
+                                })
+                              : message.warning(
+                                  "You need to subscribe to use this feature"
+                                )
+                          }>
                           Play
-                        </button>
+                        </NavLink>
+
                         {/* <Link
                           to={{ pathname: '/play-poem', state: { title: value.title, poem: poems[index] } }}
                           className='p-2 mt-4 d-inline-block text-white fw-700 lh-30 rounded-lg w200 text-center font-xsssss ls-3 bg-current'>

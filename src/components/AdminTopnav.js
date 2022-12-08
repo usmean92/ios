@@ -52,7 +52,7 @@ class AdminTopnav extends Component {
             </div>
           </li>
 
-          <li className='nav-item dropdown no-arrow mx-1'>
+          {/* <li className='nav-item dropdown no-arrow mx-1'>
             <a
               className='navi-link dropdown-toggle'
               href='/'
@@ -65,9 +65,9 @@ class AdminTopnav extends Component {
 
               <span className='badge badge-danger badge-counter'>3+</span>
             </a>
-          </li>
+          </li> */}
 
-          <li className='nav-item dropdown no-arrow mx-1'>
+          {/* <li className='nav-item dropdown no-arrow mx-1'>
             <a
               className='navi-link dropdown-toggle'
               href='/'
@@ -80,7 +80,7 @@ class AdminTopnav extends Component {
 
               <span className='badge badge-danger badge-counter'>7</span>
             </a>
-          </li>
+          </li> */}
 
           <li className='nav-item dropdown no-arrow'>
             <a
@@ -97,7 +97,7 @@ class AdminTopnav extends Component {
                 className='w45 mt-n1 rounded-circle'
               />
               <span className='d-none d-lg-inline text-grey-600 fw-700 ml-2 mr-2 font-xssss'>
-                Douglas McGee
+                Maktub Admin
                 <i className='font-xsssss d-block text-grey-500 fw-500'></i>
               </span>
             </a>

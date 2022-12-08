@@ -18,15 +18,25 @@ const AdminChild = (props) => {
   const [loading, setLoading] = useState(false)
   const [check, setCheck] = useState(false)
   const [children, setChildren] = useState([])
+  const [current, setCurrent] = useState()
   const { pid } = locationState.state
-
-  const handleModel = () => {
-    setLocation(!location)
-  }
 
   useEffect(async () => {
     await getChildren({ pid, setChildren, setLoading })
   }, [check])
+
+  const handleModel = (parentId) => {
+    setLocation(!location)
+    setCurrent(parentId)
+  }
+
+  const deleteChild = async () => {
+    let response = await deletechild(current)
+    if (response.data.message) {
+      setCheck(!check)
+      handleModel()
+    }
+  }
   return (
     <>
       <div id="wrapper">
@@ -121,7 +131,7 @@ const AdminChild = (props) => {
                                     <Button
                                       className="bg-transparent border-0"
                                       onClick={() => {
-                                        handleModel();
+                                        handleModel(value._id);
                                       }}
                                     >
                                       <i className="ti-trash  font-xs text-danger"></i>
@@ -135,7 +145,7 @@ const AdminChild = (props) => {
                                     >
                                       <Button
                                         onClick={() => {
-                                          handleModel();
+                                          handleModel(current);
                                         }}
                                         className="btn-close z-index-5 posa right-0 top-0 mt-3 me-3 font-xss"
                                       ></Button>
@@ -148,10 +158,7 @@ const AdminChild = (props) => {
 
                                         <Button
                                           onClick={() => {
-                                            deletechild(value._id)
-                                            setCheck(!check)
-                                            window.location.reload()
-                                            // handleModel()
+                                            deleteChild()
                                           }}
                                           className="border-0 btn rounded-6 lh-2 p-3 mt-0 mb-2 text-white bg-danger font-xssss text-uppercase fw-600 ls-3"
                                         >

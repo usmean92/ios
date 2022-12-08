@@ -5,6 +5,9 @@ export const VideoPlayer = () => {
   let location = useLocation()
   let { qid, course, content, number, index } = location.state
 
+  console.log('ff: ', location.state)
+
+
   const source = `/assets/videos/${course}/${number}.mp4`
   return (
     <div className='text-center mt-5'>
@@ -16,7 +19,10 @@ export const VideoPlayer = () => {
       </video>
 
       <div>
-        <Link to={{ pathname: '/sketch-board', state: { qid, answer: number, course, index } }} className='btn dark-btn mt-2' >Take Quiz</Link>
+        <Link to={{
+          pathname: '/sketch-board',
+          state: { qid, answer: number, course, index, content }
+        }} className='btn dark-btn mt-2' >Take Quiz</Link>
 
       </div>
     </div>

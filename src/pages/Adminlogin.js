@@ -22,8 +22,9 @@ const AdminLogin = () => {
           if (response.data.message == false) {
             message.error(response.data.error)
           } else {
-            Cookies.remove('token')
+            // Cookies.remove('token')
             Cookies.set('admintoken', response.data.token)
+            Cookies.set('role', 'admin')
             setAdmin(response.data.admin)
             history.push('/admin')
           }
