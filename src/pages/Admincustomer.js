@@ -119,15 +119,27 @@ const Adminproductadd = (props) => {
   const [location, setLocation] = useState(false)
   const [loading, setLoading] = useState(false)
   const [check, setCheck] = useState(false)
+  const [current, setCurrent] = useState()
   const [parents, setParents] = useState([])
 
-  const handleModel = () => {
-    setLocation(!location)
-  }
+
 
   useEffect(async () => {
     await getParents({ setParents, setLoading })
   }, [check])
+
+  const handleModel = (parentId) => {
+    setLocation(!location)
+    setCurrent(parentId)
+  }
+  const deleteParent = async () => {
+    let response = await deleteparent(current)
+    if (response.data.message) {
+      setCheck(!check)
+      handleModel()
+    }
+  }
+
   return (
     <>
       <div id="wrapper">
@@ -222,11 +234,13 @@ const Adminproductadd = (props) => {
                                     <Button
                                       className="bg-transparent border-0"
                                       onClick={() => {
-                                        handleModel();
+                                        handleModel(value._id);
                                       }}
                                     >
                                       <i className="ti-trash  font-xs text-danger"></i>
                                     </Button>
+
+
                                     <Modal
                                       {...props}
                                       size="sm"
@@ -249,10 +263,7 @@ const Adminproductadd = (props) => {
 
                                         <Button
                                           onClick={() => {
-                                            console.log('fdfds: ', value._id)
-                                            // deleteparent(value._id)
-                                            setCheck(!check)
-                                            handleModel()
+                                            deleteParent()
                                           }}
                                           className="border-0 btn rounded-6 lh-2 p-3 mt-0 mb-2 text-white bg-danger font-xssss text-uppercase fw-600 ls-3"
                                         >
