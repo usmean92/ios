@@ -54,7 +54,7 @@ const MathGame2 = () => {
                 <div className='card border-0 mt-2 rounded-10'>
                   <div className='card-body d-flex px-4 pb-0 pt-4'>
                     <h4 className='font-xss text-grey-800 mt-3 fw-700'>
-                      Color By number
+                      Complete the missing number
                     </h4>
                   </div>
                   <div className='card-body p-4'>

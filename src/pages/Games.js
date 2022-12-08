@@ -9,7 +9,7 @@ import Subscribe from "../components/Subscribe";
 const memberList = [
   {
     imageUrl: "apoem.svg",
-    name: "Reading words",
+    name: "Alphabet Bubbles",
     email: "support@gmail.com",
     Connections: "500+",
     Follower: "80 M",
@@ -18,7 +18,7 @@ const memberList = [
   },
   {
     imageUrl: "abc.png",
-    name: "Color games",
+    name: "Color by letter",
     email: "support@gmail.com",
     Connections: "22 M",
     Follower: "822 k",
@@ -27,7 +27,7 @@ const memberList = [
   },
   {
     imageUrl: "123.svg",
-    name: "Math Letters",
+    name: "Color By Number",
     email: "support@gmail.com",
     Connections: "45 k",
     Follower: "88.7 k",
@@ -36,7 +36,7 @@ const memberList = [
   },
   {
     imageUrl: "urdu2.jpg",
-    name: "Urdu Sounds",
+    name: "Missing Number",
     email: "support@gmail.com",
     Connections: "500+",
     Follower: "88.7 k",
