@@ -130,17 +130,17 @@ const SketchBoard = () => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        style={{ width: '100%', height: 500 }}
+        style={{ width: '100%', height: 600 }}
         show={modal}
       >
-        <Modal.Body className="text-center p-4">
-          <div style={{ display: 'flex', margin: 'auto', justifyContent: 'center', alignItems: 'center', textAlign: 'center', alignSelf: 'center', backgroundColor: '#B1F2AD', width: 100, height: 100, padding: 10, borderRadius: 100 }}>
+        <Modal.Body className="d-flex text-center p-4 result-modal">
+          <div className='d-flex align-items-center justify-content-center correct-answer-div'>
             <BsCheck2All color='white' size={50} />
           </div>
-          <p className="text-grey-800 fs-3 mt-3 mb-4">
+          <h3 className="text-grey-800 fs-3 mb-3">
             Correct Answer
-          </p>
-          <Button className='btn btn-primary' onClick={() => handleModel()}>Close</Button>
+          </h3>
+          <Button className='btn btn-success w-25' onClick={() => handleModel()}>Next</Button>
         </Modal.Body>
       </Modal>
     </div >

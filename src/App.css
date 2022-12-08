@@ -81,3 +81,30 @@
 .icon {
   cursor: pointer;
 }
+
+.progress-bar {
+  background-color: transparent !important;
+}
+
+.correct-answer-div {
+  margin: auto;
+  background-color: #B1F2AD;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 50px;
+  margin-bottom: 20;
+}
+
+.result-modal {
+  flex-direction: column;
+  height: 400px;
+  align-items: center;
+}
+
+.reports-div {
+  background-color: rgba(255, 255, 255, 0.945);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 8px 10px 5px rgb(235, 235, 235);
+}

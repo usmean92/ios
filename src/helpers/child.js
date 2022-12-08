@@ -71,25 +71,24 @@ export const getPoems = async ({ setPoems, setLoading }) => {
 }
 
 export const getReport = async ({ childId, setReport, setChild, setLoading }) => {
-  if (!childId) {
-    message.warning('Return Back to Parent Dashboard')
-  } else {
-    setLoading(true)
-    try {
 
-      let response = await fetchreport(childId, { childId })
-      if (response.data.message === false) {
-        message.error(response.data.error)
-      } else {
-        setChild(response.data.child)
-        setReport(response.data.report)
-      }
-    } catch (err) {
-      message.error(err.message)
+  console.log('child: ', childId)
+  setLoading(true)
+  try {
+
+    let response = await fetchreport(childId, { childId })
+    if (response.data.message === false) {
+      message.error(response.data.error)
+    } else {
+      setChild(response.data.child)
+      setReport(response.data.report)
     }
-    finally {
-      setLoading(false)
-    }
+  } catch (err) {
+    message.error(err.message)
   }
+  finally {
+    setLoading(false)
+  }
+
 
 }

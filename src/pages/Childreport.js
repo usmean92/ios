@@ -9,41 +9,8 @@ import { GiCheckMark } from 'react-icons/gi'
 import { RiErrorWarningLine } from 'react-icons/ri'
 import { AiOutlineUser } from 'react-icons/ai'
 import { MdSchool } from 'react-icons/md'
-
-// const paymentList = [
-//   {
-//     id: "0901",
-//     name: "Paypal",
-//     imageUrl: "user.png",
-//     number: "4321 4432 6565 ****",
-//     color: "success",
-//     status: "Active",
-//   },
-//   {
-//     id: "1233",
-//     name: "Master Card",
-//     imageUrl: "user.png",
-//     number: "***port@gmail.com",
-//     color: "success",
-//     status: "Active",
-//   },
-//   {
-//     id: "2323",
-//     name: "Payonner",
-//     imageUrl: "user.png",
-//     number: "**herry@payoner.com",
-//     color: "danger",
-//     status: "Deactive",
-//   },
-//   {
-//     id: "0901",
-//     name: "Visa",
-//     imageUrl: "user.png",
-//     number: "4321 4432 6565 ****",
-//     color: "success",
-//     status: "Active",
-//   },
-// ];
+import Cookies from "js-cookie";
+import ProgressBar from 'react-animated-progress-bar';
 
 const ChildReport = (props) => {
   const [location, setLocation] = useState(false)
@@ -51,13 +18,15 @@ const ChildReport = (props) => {
   const [report, setReport] = useState([])
   const [child, setChild] = useState([])
 
-  let { currentChild } = useContext(AuthContext)
+  let { currentChild, setCurrentChild } = useContext(AuthContext)
 
   let locationState = useLocation()
 
-  useEffect(() => {
-    getReport({ childId: currentChild, setReport, setLoading, setChild })
+  useEffect(async () => {
+    getReport({ childId: Cookies.get('currentChild'), setReport, setLoading, setChild })
   }, [])
+
+  const now = 60;
 
   return (
     <>
@@ -115,26 +84,88 @@ const ChildReport = (props) => {
                             </h4>
                           </div>
                           {report.map((item) => (
-                            <tr>
-                              <div className={`card-body m-4 mb-0 ${item.percentage > 50 ? 'bg-lightgreen' : 'bg-lightred'} p-4 rounded-lg`}>
-                                <h4 className='fw-700 mt-2 font-xss text-grey-900 d-flex mb-0'>
-                                  {item.course}
-                                  <div className='txt-green font-xs fw-600 ls-3 p-2 rounded-lg ml-auto'>
-                                    {item.attempted} <span><GiCheckMark size={15} color="green" /></span>
-                                  </div>
-                                  <div
-                                    className='text-red font-xs fw-600 ls-3 p-2 rounded-lg ml-auto'>
-                                    {item.unattemped > 0 && (
-                                      <>
-                                        {item.unattemped} < span > <RiErrorWarningLine size={20} color="red" /></span></>
-                                    )}
+                            <tr className="reports-div m-3 mb-5">
+                              <h4 className='fw-700 mt-2 font-xss text-grey-600 d-flex mb-0'>
+                                {item.course}</h4>
+                              <ProgressBar
+                                className="progress-bar"
+                                width="400px"
+                                height="10px"
+                                rect
+                                fontColor="gray"
+                                percentage={Math.round(item.percentage)}
+                                rectPadding="1px"
+                                rectBorderRadius="50px"
+                                trackPathColor="#E0E3E3"
+                                defColor={{
+                                  fair: '#A7CCE4',
+                                  good: '#ED8B4F',
+                                  excellent: '#6D52DC',
+                                  poor: '#F5D767',
+                                }}
+                                bgColor="#333333"
+                                trackBorderColor="transparent"
+                              />
 
-                                  </div>
-                                  <span className={`${item.percentage > 50 ? 'bg-success' : 'bg-danger'} text-white font-xs fw-bold ls-3 p-2 rounded-lg ml-auto`}>
-                                    {Math.round(item.percentage)} %
-                                  </span>
-                                </h4>
+                              <div className='d-flex'>
+                                <ProgressBar
+                                  width="200px"
+                                  height="10px"
+                                  fontColor="gray"
+                                  trackWidth="20"
+                                  percentage={item.attempted * 100 / (item.attempted + item.unattemped)}
+                                  trackPathColor="#E0E3E3"
+                                  trackBorderColor="#EEEFEF"
+                                  hollowBackgroundColor="transparent"
+                                  defColor={{
+                                    fair: '#A7CCE4',
+                                    good: '#ED8B4F',
+                                    excellent: '#6D52DC',
+                                    poor: '#F5D767',
+                                  }}
+                                />
+
+                                <ProgressBar
+                                  width="200px"
+                                  height="10px"
+                                  fontColor="gray"
+                                  trackWidth="20"
+                                  percentage={item.unattemped * 100 / (item.attempted + item.unattemped)}
+                                  trackPathColor="#E0E3E3"
+                                  trackBorderColor="#EEEFEF"
+                                  hollowBackgroundColor="transparent"
+                                  defColor={{
+                                    fair: '#A7CCE4',
+                                    good: '#ED8B4F',
+                                    excellent: '#6D52DC',
+                                    poor: '#F5D767',
+                                  }}
+                                />
                               </div>
+                              <div className="d-flex">
+                                <h6 className='fw-500 mt-2 font-xss text-grey-600 d-flex mb-0' style={{marginLeft:10}}>Attempted</h6>
+                                <h6 className='fw-500 mt-2 font-xss text-grey-600 d-flex mb-0' style={{ marginLeft: 100 }}>Unattempted</h6>
+
+                              </div>
+                              {/* <div className={`card-body m-4 mb-0 ${item.percentage > 50 ? 'bg-lightgreen' : 'bg-lightred'} p-4 rounded-lg`}>
+                                <h4 className='fw-700 mt-2 font-xss text-grey-900 d-flex mb-0'>
+                                  {item.course}</h4>
+                                <div className='txt-green font-xs fw-600 ls-3 p-2 rounded-lg ml-auto'>
+                                  {item.attempted} <span><GiCheckMark size={15} color="green" /></span>
+                                </div>
+                                <div
+                                  className='text-red font-xs fw-600 ls-3 p-2 rounded-lg ml-auto'>
+                                  {item.unattemped > 0 && (
+                                    <>
+                                      {item.unattemped} < span > <RiErrorWarningLine size={20} color="red" /></span></>
+                                  )}
+
+                                </div>
+                                <span className={`${item.percentage > 50 ? 'bg-success' : 'bg-danger'} text-white font-xs fw-bold ls-3 p-2 rounded-lg ml-auto`}>
+                                  {Math.round(item.percentage)} %
+                                </span>
+
+                              </div> */}
                             </tr>
 
                           ))}

@@ -5,6 +5,8 @@ export const VideoPlayer = () => {
   let location = useLocation()
   let { qid, course, content, number, index } = location.state
 
+  console.log('ff: ', location.state)
+
 
   const source = `/assets/videos/${course}/${number}.mp4`
   return (

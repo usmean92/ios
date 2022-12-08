@@ -223,7 +223,7 @@ const MathsContent = () => {
                                     <Link to={{
                                       pathname: '/video-player',
                                       state: {
-                                        course: location, content: 'digit',
+                                        course: 'Math', content: 'digit',
                                         number: productList[index].name[productList[index].name.indexOf('(') + 1],
                                         qid: quizes._id, index
 
