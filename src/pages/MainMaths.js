@@ -17,7 +17,7 @@ const popularList = [
     tag: "Matching Similar",
     lesson: "24 ",
     status: "alert-warning text-warning",
-    link: "games",
+    link: "learnmaths",
   },
   {
     imageUrl: "123.svg",

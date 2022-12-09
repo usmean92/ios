@@ -38,6 +38,7 @@ import Userprofile from "./pages/Userprofile";
 
 import MainEnglish from "./pages/MainEnglish";
 import MainMaths from "./pages/MainMaths";
+import LearnMaths from "./pages/LearnMaths";
 import MainUrdu from "./pages/MainUrdu";
 import Games from "./pages/Games";
 import Poems from "./pages/Poems";
@@ -62,11 +63,14 @@ import * as serviceWorker from "./serviceWorker";
 import AddKid from "./pages/AddKid";
 import MathsContent from "./pages/MathsContent";
 import EnglishContent from "./pages/Englishcontent";
+import LearnEnglish from "./pages/LearnEnglish";
 import UrduContent from "./pages/UrduContent";
+import LearnUrdu from "./pages/LearnUrdu";
 
 import ModelA from "./pages/ModelA";
 import ModelMaths from "./pages/ModelMaths";
 import VideoPlayer from "./pages/VideoPlayer";
+import LearningVideoPlayer from "./pages/LearningVideoPlayer";
 import SketchBoard from "./pages/SketchBoard";
 // import CommingSoon from "./pages/comingsoon";
 
@@ -338,13 +342,29 @@ export default function App() {
 
               <Route
                 exact
+                path={`${process.env.PUBLIC_URL}/learnmaths`}
+                component={LearnMaths}
+              />
+              <Route
+                exact
                 path={`${process.env.PUBLIC_URL}/mathscourse`}
                 component={MathsContent}
+              />
+
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/learn-english`}
+                component={LearnEnglish}
               />
               <Route
                 exact
                 path={`${process.env.PUBLIC_URL}/engcourse`}
                 component={EnglishContent}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/learn-urdu`}
+                component={LearnUrdu}
               />
               <Route
                 exact
@@ -429,6 +449,14 @@ export default function App() {
                 path={`${process.env.PUBLIC_URL}/video-player`}
                 component={VideoPlayer}
               />
+
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/learning-video-player`}
+                component={LearningVideoPlayer}
+              />
+
+
 
               <Route
                 exact

@@ -18,7 +18,7 @@ const popularList = [
     tag: "Matching Similar",
     lesson: "24 ",
     status: "alert-warning text-warning",
-    link: "games",
+    link: "learn-urdu",
   },
   {
     imageUrl: "urdu1.png",
